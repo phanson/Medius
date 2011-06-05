@@ -47,5 +47,10 @@ namespace Medius
             // confirm close if not saved
             // TODO
         }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // TODO
+        }
     }
 }
