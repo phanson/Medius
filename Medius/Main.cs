@@ -23,11 +23,19 @@ namespace Medius
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // select file
+            // TODO
+
+            // load into memory
             // TODO
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // select import format
+            // TODO
+
+            // run import
             // TODO
         }
 
@@ -50,6 +58,25 @@ namespace Medius
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // select export format
+            // TODO
+
+            // run export
+            // TODO
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // select file if not already selected
+            // TODO
+
+            // save to file
+            // TODO
+        }
+
+        private void referenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // open help file
             // TODO
         }
     }
