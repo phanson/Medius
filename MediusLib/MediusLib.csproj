@@ -41,10 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AbstractOperateOnEachController.cs" />
-    <Compile Include="Controllers\ExportController.cs" />
-    <Compile Include="Controllers\ImportController.cs" />
-    <Compile Include="Controllers\OperateOnEachController.cs" />
-    <Compile Include="Controllers\PersistenceController.cs" />
+    <Compile Include="Controllers\Actions\AbstractAction.cs" />
+    <Compile Include="Controllers\Actions\IReversibleAction.cs" />
+    <Compile Include="Controllers\IExportController.cs" />
+    <Compile Include="Controllers\IImportController.cs" />
+    <Compile Include="Controllers\IOperateOnEachController.cs" />
+    <Compile Include="Controllers\IPersistenceController.cs" />
+    <Compile Include="Controllers\IUndoRedoController.cs" />
     <Compile Include="Model\Book.cs" />
     <Compile Include="Model\Chapter.cs" />
     <Compile Include="Model\Post.cs" />

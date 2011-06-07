@@ -91,6 +91,12 @@
   <ItemGroup>
     <Content Include="book.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MediusLib\MediusLib.csproj">
+      <Project>{64E59A50-F871-4294-86DB-A01EDC6A1BA5}</Project>
+      <Name>MediusLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

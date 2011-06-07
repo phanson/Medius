@@ -1,6 +1,6 @@
 ﻿namespace Medius.Controllers
 {
-    public interface ExportController
+    public interface IExportController
     {
         /// <summary>
         /// Convert the given input file out of BXF format and save the result in the specified location.

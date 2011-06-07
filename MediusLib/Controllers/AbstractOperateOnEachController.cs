@@ -5,7 +5,7 @@ namespace Medius.Controllers
     /// <summary>
     /// Provides generic structure for all OperateOnEach controllers.
     /// </summary>
-    public abstract class AbstractOperateOnEachController : OperateOnEachController
+    public abstract class AbstractOperateOnEachController : IOperateOnEachController
     {
         /// <summary>
         /// When overridden in a derived class, performs a class-specific action on a single blog post.

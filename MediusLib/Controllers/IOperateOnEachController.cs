@@ -2,7 +2,7 @@
 
 namespace Medius.Controllers
 {
-    public interface OperateOnEachController
+    public interface IOperateOnEachController
     {
         /// <summary>
         /// Performs a controller-specific action on every post in the given <see cref="Book"/>.
