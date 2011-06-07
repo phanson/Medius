@@ -1,4 +1,6 @@
-﻿namespace Medius.Model
+﻿using System;
+
+namespace Medius.Model
 {
     /// <summary>
     /// Describes a single blog post.
@@ -14,6 +16,11 @@
         /// The post author(s).
         /// </summary>
         public string Author { get; set; }
+
+        /// <summary>
+        /// The publish date.
+        /// </summary>
+        public DateTime PublishDate { get; set; }
 
         /// <summary>
         /// The post content in HTML form.
