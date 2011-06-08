@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Medius.Controllers
 {
-    public class XmlPersistenceController : IPersistenceController
+    public class XmlPersistenceController : IBookPersistenceController
     {
         public Book Load(Stream stream)
         {

@@ -3,7 +3,7 @@ using Medius.Model;
 
 namespace Medius.Controllers
 {
-    public interface IPersistenceController
+    public interface IBookPersistenceController
     {
         /// <summary>
         /// Deserializes a Book object from a stream.
