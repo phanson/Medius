@@ -17,6 +17,6 @@ namespace Medius.Controllers
         /// </summary>
         /// <param name="book">Object to serialize.</param>
         /// <param name="stream">The stream.</param>
-        void Save(Book book, Stream filename);
+        void Save(Book book, Stream stream);
     }
 }

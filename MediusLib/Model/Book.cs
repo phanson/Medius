@@ -6,7 +6,7 @@ namespace Medius.Model
     /// <summary>
     /// Describes a book as a collection of blog posts organized into chapters.
     /// </summary>
-    [XmlType(TypeName = "book")]
+    [XmlRoot(ElementName = "book", Namespace = "http://philiphanson.org/medius/book/1.0")]
     public class Book
     {
         /// <summary>
@@ -51,7 +51,8 @@ namespace Medius.Model
         /// <summary>
         /// List of chapters.
         /// </summary>
-        [XmlElement(ElementName = "chapters")]
+        [XmlArray(ElementName = "chapters")]
+        [XmlArrayItem(ElementName = "chapter", Type = typeof(Chapter))]
         public List<Chapter> Chapters { get; set; }
     }
 }

@@ -24,7 +24,8 @@ namespace Medius.Model
         /// <summary>
         /// List of all posts in this chapter.
         /// </summary>
-        [XmlElement(ElementName = "posts")]
+        [XmlArray(ElementName = "posts")]
+        [XmlArrayItem(ElementName = "post", Type = typeof(Post))]
         public List<Post> Posts { get; set; }
 
         /// <summary>
