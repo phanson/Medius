@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="book"
+    targetNamespace="http://philiphanson.org/medius/book/1.0"
+    elementFormDefault="qualified"
+    xmlns="http://philiphanson.org/medius/book/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <!-- Element for a book (root element) -->
+  <xs:element name="book">
+    <xs:complexType>
+      <xs:sequence>
+        <!-- books contain a set of chapters -->
+        <xs:element ref="chapter" minOccurs="1" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="title" type="xs:string" use="required"/>
+      <xs:attribute name="author" type="xs:string" use="required"/>
+      <xs:attribute name="editor" type="xs:string" use="optional"/>
+      <xs:attribute name="year" type="xs:integer" use="required"/>
+      <xs:attribute name="publisher" type="xs:string" use="optional"/>
+      <xs:attribute name="copyright" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Element for a chapter -->
+  <xs:element name="chapter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="text" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <!-- chapters contain a set of posts -->
+        <xs:element ref="post" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+      <xs:attribute name="title" type="xs:string" use="required"/>
+      <!-- order info not optional for chapters; we have nothing else to go on -->
+      <xs:attribute name="orderIndex" type="xs:integer" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Element for a single post -->
+  <xs:element name="post">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="title" type="xs:string" use="required"/>
+          <xs:attribute name="author" type="xs:string" use="required"/>
+          <!-- publish date is not strictly required, as some may be unpublished -->
+          <xs:attribute name="publishDate" type="xs:dateTime" use="optional"/>
+          <!-- exclusion flag defaults to "false" -->
+          <xs:attribute name="exclude" type="xs:boolean" use="optional"/>
+          <!-- order info can be kept around; publishDate is used in its absence -->
+          <xs:attribute name="orderIndex" type="xs:integer" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
