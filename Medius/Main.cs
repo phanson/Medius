@@ -12,7 +12,7 @@ namespace Medius
 {
     public partial class Main : Form
     {
-        IUndoRedoController actions;
+        IUndoRedoController actions = new UndoRedoController();
 
         string activeFilename;
         bool modified;
@@ -30,13 +30,25 @@ namespace Medius
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // select file
-            // TODO
+            OpenFileDialog d = new OpenFileDialog();
+            d.AddExtension = true;
+            d.CheckFileExists = true;
+            d.CheckPathExists = true;
+            d.DefaultExt = ".medius";
+            d.Filter = "Medius projects (*.medius)|*.medius";
+            d.Multiselect = false;
+            d.SupportMultiDottedExtensions = true;
+            d.Title = "Open an existing project";
+            d.ValidateNames = true;
+
+            if (d.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return;
 
             // load into memory
             // TODO
 
             // bookkeeping
-            // TODO activeFilename = <opened filename>
+            activeFilename = d.FileName;
             modified = false;
         }
 
@@ -52,7 +64,7 @@ namespace Medius
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             // confirm close if not saved
-            e.Cancel = !(modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
+            e.Cancel = (modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
