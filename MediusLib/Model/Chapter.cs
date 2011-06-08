@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Medius.Model
 {
@@ -10,22 +11,26 @@ namespace Medius.Model
         /// <summary>
         /// The chapter title.
         /// </summary>
+        [XmlAttribute(AttributeName = "title")]
         public string Title { get; set; }
 
         /// <summary>
         /// An optional introductory paragraph or two, to be displayed
         /// at the beginning of the chapter.
         /// </summary>
+        [XmlElement(ElementName = "introduction")]
         public string Introduction { get; set; }
 
         /// <summary>
         /// List of all posts in this chapter.
         /// </summary>
+        [XmlElement(ElementName = "posts")]
         public List<Post> Posts { get; set; }
 
         /// <summary>
         /// The chapter ordering index.
         /// </summary>
+        [XmlAttribute(AttributeName = "orderIndex")]
         public int Ordering { get; set; }
     }
 }
