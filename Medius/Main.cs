@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Medius.Controllers;
+using Medius.Model;
 
 namespace Medius
 {
     public partial class Main : Form
     {
+        Project project;
+        IProjectPersistenceController projectLoader = new ProjectPersistenceController();
+
         IUndoRedoController actions = new UndoRedoController();
 
         string activeFilename;
@@ -45,7 +49,7 @@ namespace Medius
                 return;
 
             // load into memory
-            // TODO
+            project = projectLoader.Load(d.FileName);
 
             // bookkeeping
             activeFilename = d.FileName;
