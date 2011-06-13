@@ -1,9 +1,9 @@
 ﻿namespace Medius.Model
 {
-    public class BinaryFile
+    public class BinaryFile : ISupportFile
     {
         public string Filename { get; set; }
         public SupportFileType FileType { get { return SupportFileType.Binary; } }
-        public byte[] Date { get; set; }
+        public byte[] Data { get; set; }
     }
 }

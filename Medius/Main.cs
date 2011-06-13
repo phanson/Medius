@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Medius.Controllers;
 using Medius.Model;
@@ -135,11 +129,25 @@ namespace Medius
             if (forceSelection || (activeFilename == null))
             {
                 // select file
-                // TODO
+                SaveFileDialog d = new SaveFileDialog();
+                d.AddExtension = true;
+                d.CheckPathExists = true;
+                d.DefaultExt = ".medius";
+                d.Filter = "Medius projects (*.medius)|*.medius";
+                d.OverwritePrompt = false;
+                d.RestoreDirectory = true;
+                d.Title = "Save project";
+                d.ValidateNames = true;
+
+                if (d.ShowDialog() == DialogResult.Cancel)
+                    return;
+
+                activeFilename = d.FileName;
             }
 
             // save to file
-            // TODO
+            projectLoader.Save(project, activeFilename);
+            modified = false;
         }
 
         #endregion Helper functions
