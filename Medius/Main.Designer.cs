@@ -207,6 +207,7 @@
             this.outline.Name = "outline";
             this.outline.Size = new System.Drawing.Size(209, 411);
             this.outline.TabIndex = 2;
+            this.outline.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.outline_AfterSelect);
             // 
             // container
             // 

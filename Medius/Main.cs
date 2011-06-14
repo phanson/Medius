@@ -141,7 +141,7 @@ namespace Medius
         private void clearUI()
         {
             outline.Nodes.Clear();
-            browseWindow.Url = new Uri("about:blank");
+            browseWindow.DocumentText = string.Empty;
         }
 
         /// <summary>
@@ -219,5 +219,18 @@ namespace Medius
         }
 
         #endregion Helper functions
+
+        private void outline_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if(e.Node.Level == 0)
+            {
+                // chapter
+                Chapter c = e.Node.Tag as Chapter;
+            } else {
+                // post
+                Post p = e.Node.Tag as Post;
+                browseWindow.DocumentText = "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
+            }
+        }
     }
 }
