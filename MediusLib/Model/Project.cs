@@ -16,5 +16,10 @@ namespace Medius.Model
         /// Set of files that are part of the project, but not part of the book content.
         /// </summary>
         public List<ISupportFile> Files { get; set; }
+
+        public Project()
+        {
+            Files = new List<ISupportFile>();
+        }
     }
 }

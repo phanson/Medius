@@ -65,12 +65,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Controllers\wp2book.xsl" />
+    <EmbeddedResource Include="Controllers\wp2book.xsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Model\book.xsd">
+    <EmbeddedResource Include="Model\book.xsd">
       <SubType>Designer</SubType>
-    </None>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

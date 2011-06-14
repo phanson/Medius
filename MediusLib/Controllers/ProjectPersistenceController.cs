@@ -31,16 +31,16 @@ namespace Medius.Controllers
                             // TODO: validate file
                             project.Book = bookLoader.Load(zipStream);
                         }
-                        //else if (textFile.Contains(Path.GetExtension(entry.Name)))
-                        //{
-                        //    // text file
-                        //    project.Files.Add(readTextSupportFile(zipStream, entry));
-                        //}
-                        //else
-                        //{
-                        //    // binary file
-                        //    project.Files.Add(readBinarySupportFile(zipStream, entry));
-                        //}
+                        else if (textFile.Contains(Path.GetExtension(entry.Name)))
+                        {
+                            // text file
+                            project.Files.Add(readTextSupportFile(zipStream, entry));
+                        }
+                        else
+                        {
+                            // binary file
+                            project.Files.Add(readBinarySupportFile(zipStream, entry));
+                        }
                     }
                 }
             }
@@ -76,12 +76,12 @@ namespace Medius.Controllers
                 zipStream.PutNextEntry(new ZipEntry("book.xml"));
                 bookLoader.Save(project.Book, zipStream);
                 zipStream.CloseEntry();
-                //foreach (var file in project.Files)
-                //{
-                //    zipStream.PutNextEntry(new ZipEntry(file.Filename));
-                //    writeSupportFile(file, zipStream);
-                //    zipStream.CloseEntry();
-                //}
+                foreach (var file in project.Files)
+                {
+                    zipStream.PutNextEntry(new ZipEntry(file.Filename));
+                    writeSupportFile(file, zipStream);
+                    zipStream.CloseEntry();
+                }
             }
         }
 
