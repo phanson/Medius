@@ -22,32 +22,13 @@ namespace Medius
 
         private void Main_Load(object sender, EventArgs e)
         {
-            // TODO
+            disableUI();
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // select file
-            OpenFileDialog d = new OpenFileDialog();
-            d.AddExtension = true;
-            d.CheckFileExists = true;
-            d.CheckPathExists = true;
-            d.DefaultExt = ".medius";
-            d.Filter = "Medius projects (*.medius)|*.medius";
-            d.Multiselect = false;
-            d.SupportMultiDottedExtensions = true;
-            d.Title = "Open an existing project";
-            d.ValidateNames = true;
-
-            if (d.ShowDialog() != System.Windows.Forms.DialogResult.OK)
-                return;
-
-            // load into memory
-            project = projectLoader.Load(d.FileName);
-
-            // bookkeeping
-            activeFilename = d.FileName;
-            modified = false;
+            // confirm close if not saved
+            e.Cancel = (modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
         }
 
         private void importToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,12 +38,6 @@ namespace Medius
 
             // run import
             // TODO
-        }
-
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            // confirm close if not saved
-            e.Cancel = (modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,6 +50,20 @@ namespace Medius
         }
 
         #region Simple menu items
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            disableUI();
+            if (!load())
+            {
+                enableUI();
+                return;
+            }
+
+            clearUI();
+            populateUI();
+            enableUI();
+        }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -120,6 +109,73 @@ namespace Medius
         #region Helper functions
 
         /// <summary>
+        /// Populates the UI with information about the current project
+        /// </summary>
+        private void populateUI()
+        {
+            // TODO: not sort in place
+            TreeNode chnode, pnode;
+            project.Book.Chapters.Sort((a, b) => a.Ordering - b.Ordering);
+            foreach (var chapter in project.Book.Chapters)
+            {
+                chnode = new TreeNode(chapter.Title);
+                chnode.Tag = chapter;
+                chapter.Posts.Sort((a, b) =>
+                {
+                    int c = (int)a.PublishDate.Subtract(b.PublishDate).TotalSeconds;
+                    return c == 0 ? a.Ordering - b.Ordering : c;
+                });
+                foreach (var post in chapter.Posts)
+                {
+                    pnode = new TreeNode(post.Title);
+                    pnode.Tag = post;
+                    chnode.Nodes.Add(pnode);
+                }
+                outline.Nodes.Add(chnode);
+            }
+        }
+
+        /// <summary>
+        /// Removes all data from the UI
+        /// </summary>
+        private void clearUI()
+        {
+            outline.Nodes.Clear();
+            browseWindow.Url = new Uri("about:blank");
+        }
+
+        /// <summary>
+        /// Loads a model state from a file.
+        /// </summary>
+        /// <returns><c>true</c> if project was loaded successfully.</returns>
+        private bool load()
+        {
+            // select file
+            OpenFileDialog d = new OpenFileDialog();
+            d.AddExtension = true;
+            d.CheckFileExists = true;
+            d.CheckPathExists = true;
+            d.DefaultExt = ".medius";
+            d.Filter = "Medius projects (*.medius)|*.medius";
+            d.Multiselect = false;
+            d.SupportMultiDottedExtensions = true;
+            d.Title = "Open an existing project";
+            d.ValidateNames = true;
+
+            if (d.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                return false;
+
+            // load into memory
+            project = projectLoader.Load(d.FileName);
+
+            // bookkeeping
+            activeFilename = d.FileName;
+            modified = false;
+
+            return true;
+        }
+
+        /// <summary>
         /// Save the current model state to a file.
         /// </summary>
         /// <param name="forceSelection">Flag to force display of file selection dialog.</param>
@@ -148,6 +204,18 @@ namespace Medius
             // save to file
             projectLoader.Save(project, activeFilename);
             modified = false;
+        }
+
+        private void disableUI()
+        {
+            container.Enabled = false;
+            outline.Enabled = false;
+        }
+
+        private void enableUI()
+        {
+            outline.Enabled = true;
+            container.Enabled = true;
         }
 
         #endregion Helper functions
