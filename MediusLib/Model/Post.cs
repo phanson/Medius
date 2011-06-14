@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Xml;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace Medius.Model
 {
@@ -29,8 +31,37 @@ namespace Medius.Model
         /// <summary>
         /// The post content in HTML form.
         /// </summary>
-        [XmlText]
+        [XmlIgnore]
         public string Content { get; set; }
+
+        [XmlText]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XmlNode[] CDataContent
+        {
+            // shamelessly lifted from http://stackoverflow.com/questions/1379888/how-do-you-serialize-a-string-as-cdata-using-xmlserializer/1379936#1379936
+            get
+            {
+                var dummy = new XmlDocument();
+                return new XmlNode[] { dummy.CreateCDataSection(Content) };
+            }
+            set
+            {
+                if (value == null)
+                {
+                    Content = null;
+                    return;
+                }
+
+                if (value.Length != 1)
+                {
+                    throw new InvalidOperationException(
+                        String.Format(
+                            "Invalid array length {0}", value.Length));
+                }
+
+                Content = value[0].Value;
+            }
+        }
 
         /// <summary>
         /// Flag to exclude this post from being exported.
