@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
+using System.ComponentModel;
 
 namespace Medius.Model
 {
@@ -53,6 +54,7 @@ namespace Medius.Model
         /// </summary>
         [XmlArray(ElementName = "chapters")]
         [XmlArrayItem(ElementName = "chapter", Type = typeof(Chapter))]
+        [Browsable(false)]
         public List<Chapter> Chapters { get; set; }
     }
 }

@@ -49,18 +49,26 @@
             this.outline = new System.Windows.Forms.TreeView();
             this.container = new System.Windows.Forms.SplitContainer();
             this.browseWindow = new System.Windows.Forms.WebBrowser();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.viewTab = new System.Windows.Forms.TabPage();
+            this.editTab = new System.Windows.Forms.TabPage();
+            this.propTab = new System.Windows.Forms.TabPage();
+            this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
             this.container.Panel1.SuspendLayout();
             this.container.Panel2.SuspendLayout();
             this.container.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.viewTab.SuspendLayout();
+            this.propTab.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 437);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 443);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(634, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(599, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -73,7 +81,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(634, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(599, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -147,6 +155,7 @@
             // 
             // undoToolStripMenuItem
             // 
+            this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -155,6 +164,7 @@
             // 
             // redoToolStripMenuItem
             // 
+            this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
@@ -205,7 +215,7 @@
             this.outline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outline.Location = new System.Drawing.Point(0, 0);
             this.outline.Name = "outline";
-            this.outline.Size = new System.Drawing.Size(209, 411);
+            this.outline.Size = new System.Drawing.Size(197, 417);
             this.outline.TabIndex = 2;
             this.outline.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.outline_AfterSelect);
             // 
@@ -222,26 +232,80 @@
             // 
             // container.Panel2
             // 
-            this.container.Panel2.Controls.Add(this.browseWindow);
-            this.container.Size = new System.Drawing.Size(634, 413);
-            this.container.SplitterDistance = 211;
+            this.container.Panel2.Controls.Add(this.tabControl);
+            this.container.Size = new System.Drawing.Size(599, 419);
+            this.container.SplitterDistance = 199;
             this.container.TabIndex = 3;
             // 
             // browseWindow
             // 
             this.browseWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browseWindow.Location = new System.Drawing.Point(0, 0);
+            this.browseWindow.Location = new System.Drawing.Point(3, 3);
             this.browseWindow.MinimumSize = new System.Drawing.Size(20, 20);
             this.browseWindow.Name = "browseWindow";
-            this.browseWindow.Size = new System.Drawing.Size(417, 411);
+            this.browseWindow.Size = new System.Drawing.Size(265, 237);
             this.browseWindow.TabIndex = 0;
             this.browseWindow.WebBrowserShortcutsEnabled = false;
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.viewTab);
+            this.tabControl.Controls.Add(this.editTab);
+            this.tabControl.Controls.Add(this.propTab);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(394, 417);
+            this.tabControl.TabIndex = 1;
+            // 
+            // viewTab
+            // 
+            this.viewTab.Controls.Add(this.browseWindow);
+            this.viewTab.Location = new System.Drawing.Point(4, 22);
+            this.viewTab.Name = "viewTab";
+            this.viewTab.Padding = new System.Windows.Forms.Padding(3);
+            this.viewTab.Size = new System.Drawing.Size(271, 243);
+            this.viewTab.TabIndex = 0;
+            this.viewTab.Text = "View";
+            this.viewTab.UseVisualStyleBackColor = true;
+            // 
+            // editTab
+            // 
+            this.editTab.Location = new System.Drawing.Point(4, 22);
+            this.editTab.Name = "editTab";
+            this.editTab.Padding = new System.Windows.Forms.Padding(3);
+            this.editTab.Size = new System.Drawing.Size(271, 243);
+            this.editTab.TabIndex = 1;
+            this.editTab.Text = "Edit";
+            this.editTab.UseVisualStyleBackColor = true;
+            // 
+            // propTab
+            // 
+            this.propTab.Controls.Add(this.propertyGrid);
+            this.propTab.Location = new System.Drawing.Point(4, 22);
+            this.propTab.Name = "propTab";
+            this.propTab.Padding = new System.Windows.Forms.Padding(3);
+            this.propTab.Size = new System.Drawing.Size(386, 391);
+            this.propTab.TabIndex = 2;
+            this.propTab.Text = "Properties";
+            this.propTab.UseVisualStyleBackColor = true;
+            // 
+            // propertyGrid
+            // 
+            this.propertyGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid.Location = new System.Drawing.Point(3, 3);
+            this.propertyGrid.Name = "propertyGrid";
+            this.propertyGrid.PropertySort = System.Windows.Forms.PropertySort.Alphabetical;
+            this.propertyGrid.Size = new System.Drawing.Size(380, 385);
+            this.propertyGrid.TabIndex = 0;
+            this.propertyGrid.ToolbarVisible = false;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 459);
+            this.ClientSize = new System.Drawing.Size(599, 465);
             this.Controls.Add(this.container);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -257,6 +321,9 @@
             this.container.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.container)).EndInit();
             this.container.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.viewTab.ResumeLayout(false);
+            this.propTab.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,6 +351,11 @@
         private System.Windows.Forms.TreeView outline;
         private System.Windows.Forms.SplitContainer container;
         private System.Windows.Forms.WebBrowser browseWindow;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage viewTab;
+        private System.Windows.Forms.TabPage editTab;
+        private System.Windows.Forms.TabPage propTab;
+        private System.Windows.Forms.PropertyGrid propertyGrid;
     }
 }
 

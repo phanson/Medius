@@ -113,13 +113,16 @@ namespace Medius
         /// </summary>
         private void populateUI()
         {
+            TreeNode bnode, cnode, pnode;
+            bnode = new TreeNode(project.Book.Title);
+            bnode.Tag = project.Book;
+
             // TODO: not sort in place
-            TreeNode chnode, pnode;
             project.Book.Chapters.Sort((a, b) => a.Ordering - b.Ordering);
             foreach (var chapter in project.Book.Chapters)
             {
-                chnode = new TreeNode(chapter.Title);
-                chnode.Tag = chapter;
+                cnode = new TreeNode(chapter.Title);
+                cnode.Tag = chapter;
                 chapter.Posts.Sort((a, b) =>
                 {
                     int c = (int)a.PublishDate.Subtract(b.PublishDate).TotalSeconds;
@@ -129,10 +132,17 @@ namespace Medius
                 {
                     pnode = new TreeNode(post.Title);
                     pnode.Tag = post;
-                    chnode.Nodes.Add(pnode);
+                    cnode.Nodes.Add(pnode);
                 }
-                outline.Nodes.Add(chnode);
+                bnode.Nodes.Add(cnode);
             }
+
+            outline.Nodes.Add(bnode);
+            
+            // expand all nodes
+            bnode.Expand();
+            foreach (TreeNode node in bnode.Nodes)
+                node.Expand();
         }
 
         /// <summary>
@@ -222,14 +232,25 @@ namespace Medius
 
         private void outline_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if(e.Node.Level == 0)
+            switch (e.Node.Level)
             {
-                // chapter
-                Chapter c = e.Node.Tag as Chapter;
-            } else {
-                // post
-                Post p = e.Node.Tag as Post;
-                browseWindow.DocumentText = "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
+                case 0: // book
+                    Book b = e.Node.Tag as Book;  // could get this from project as well...
+                    browseWindow.DocumentText = string.Empty;
+                    propertyGrid.SelectedObject = b;
+                    break;
+                case 1: // chapter
+                    Chapter c = e.Node.Tag as Chapter;
+                    browseWindow.DocumentText = string.Empty;
+                    propertyGrid.SelectedObject = c;
+                    break;
+                case 2: // post
+                    Post p = e.Node.Tag as Post;
+                    browseWindow.DocumentText = "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
+                    propertyGrid.SelectedObject = p;
+                    break;
+                default:
+                    throw new Exception();
             }
         }
     }
