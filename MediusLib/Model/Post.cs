@@ -32,10 +32,12 @@ namespace Medius.Model
         /// The post content in HTML form.
         /// </summary>
         [XmlIgnore]
+        [Browsable(false)]
         public string Content { get; set; }
 
         [XmlText]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Browsable(false)]
         public XmlNode[] CDataContent
         {
             // shamelessly lifted from http://stackoverflow.com/questions/1379888/how-do-you-serialize-a-string-as-cdata-using-xmlserializer/1379936#1379936
