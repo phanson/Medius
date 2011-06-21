@@ -98,11 +98,13 @@ namespace Medius
         private void undo_Click(object sender, EventArgs e)
         {
             actions.Undo();
+            updateUI();
         }
 
         private void redo_Click(object sender, EventArgs e)
         {
             actions.Redo();
+            updateUI();
         }
 
         #endregion Simple menu items
