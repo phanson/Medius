@@ -32,7 +32,7 @@ namespace Medius
             e.Cancel = (modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
         }
 
-        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        private void import_Click(object sender, EventArgs e)
         {
             // select import format
             // TODO
@@ -41,7 +41,7 @@ namespace Medius
             // TODO
         }
 
-        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        private void export_Click(object sender, EventArgs e)
         {
             // select export format
             // TODO
@@ -52,7 +52,7 @@ namespace Medius
 
         #region Simple menu items
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void open_Click(object sender, EventArgs e)
         {
             disableUI();
             if (!load())
@@ -66,41 +66,41 @@ namespace Medius
             enableUI();
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exit_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void save_Click(object sender, EventArgs e)
         {
             // save to existing file if possible
             save(false);
         }
 
-        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void saveAs_Click(object sender, EventArgs e)
         {
             // force selection of new file
             save(true);
         }
 
-        private void referenceToolStripMenuItem_Click(object sender, EventArgs e)
+        private void help_Click(object sender, EventArgs e)
         {
             // open help file
             // TODO
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void about_Click(object sender, EventArgs e)
         {
             // display about box
             new AboutBox().ShowDialog(this);
         }
 
-        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void undo_Click(object sender, EventArgs e)
         {
             actions.Undo();
         }
 
-        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void redo_Click(object sender, EventArgs e)
         {
             actions.Redo();
         }
@@ -293,6 +293,11 @@ namespace Medius
             // TODO: optimize this to rebuild only changed elements
             clearOutline();
             populateOutline();
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
+            updateUI();
         }
     }
 }
