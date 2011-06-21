@@ -337,7 +337,9 @@
             // 
             // toolbar
             // 
-            this.toolbar.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolbar.AllowDrop = true;
+            this.toolbar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openButton,
             this.saveButton,
@@ -348,9 +350,10 @@
             this.redoButton,
             this.toolStripSeparator1,
             this.helpButton});
-            this.toolbar.Location = new System.Drawing.Point(3, 0);
+            this.toolbar.Location = new System.Drawing.Point(0, 0);
             this.toolbar.Name = "toolbar";
-            this.toolbar.Size = new System.Drawing.Size(168, 25);
+            this.toolbar.Size = new System.Drawing.Size(599, 25);
+            this.toolbar.Stretch = true;
             this.toolbar.TabIndex = 5;
             this.toolbar.Text = "toolStrip1";
             // 
@@ -397,6 +400,7 @@
             // undoButton
             // 
             this.undoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.undoButton.Enabled = false;
             this.undoButton.Image = ((System.Drawing.Image)(resources.GetObject("undoButton.Image")));
             this.undoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.undoButton.Name = "undoButton";
@@ -407,6 +411,7 @@
             // redoButton
             // 
             this.redoButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.redoButton.Enabled = false;
             this.redoButton.Image = ((System.Drawing.Image)(resources.GetObject("redoButton.Image")));
             this.redoButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.redoButton.Name = "redoButton";

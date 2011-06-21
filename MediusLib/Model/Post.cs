@@ -76,5 +76,16 @@ namespace Medius.Model
         /// </summary>
         [XmlAttribute(AttributeName = "orderIndex")]
         public int Ordering { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Post that = obj as Post;
+            return (that != null)
+                && string.Equals(this.Title, that.Title)
+                && string.Equals(this.Author, that.Author)
+                && string.Equals(this.Content, that.Content)
+                && DateTime.Equals(this.PublishDate, that.PublishDate);
+            // consciously ignoring the impermanent Exclude and Ordering fields
+        }
     }
 }

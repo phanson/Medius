@@ -56,5 +56,19 @@ namespace Medius.Model
         [XmlArrayItem(ElementName = "chapter", Type = typeof(Chapter))]
         [Browsable(false)]
         public List<Chapter> Chapters { get; set; }
+
+        /// <summary>
+        /// Convenience function for iterating over all posts.
+        /// </summary>
+        /// <returns>Flattened list of all posts contained in this book.</returns>
+        public List<Post> GetAllPosts()
+        {
+            List<Post> allPosts = new List<Post>();
+            foreach (Chapter c in Chapters)
+            {
+                allPosts.AddRange(c.Posts);
+            }
+            return allPosts;
+        }
     }
 }

@@ -48,5 +48,14 @@ namespace Medius.Model
         /// </summary>
         [XmlAttribute(AttributeName = "orderIndex")]
         public int Ordering { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            Chapter that = obj as Chapter;
+            return (that != null)
+                && string.Equals(this.Title, that.Title)
+                && string.Equals(this.Introduction, that.Introduction);
+            // consciously ignoring the impermanent Exclude and Ordering fields
+        }
     }
 }

@@ -126,16 +126,12 @@ namespace Medius
             bnode.Tag = project.Book;
 
             // TODO: not sort in place
-            project.Book.Chapters.Sort((a, b) => a.Ordering - b.Ordering);
+            project.Book.Chapters.Sort(Util.Helpers.ChapterSort);
             foreach (var chapter in project.Book.Chapters)
             {
                 cnode = new TreeNode(chapter.Title);
                 cnode.Tag = chapter;
-                chapter.Posts.Sort((a, b) =>
-                {
-                    int c = (int)a.PublishDate.Subtract(b.PublishDate).TotalSeconds;
-                    return c == 0 ? a.Ordering - b.Ordering : c;
-                });
+                chapter.Posts.Sort(Util.Helpers.PostSort);
                 foreach (var post in chapter.Posts)
                 {
                     pnode = new TreeNode(post.Title);
@@ -270,10 +266,11 @@ namespace Medius
         private void addChapterToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddChapterDialog d = new AddChapterDialog();
+            d.Posts = project.Book.GetAllPosts();
             if (d.ShowDialog() != DialogResult.OK)
                 return;
 
-            actions.Do(new AddChapterAction(project.Book, new Chapter(d.Title), outline.SelectedNode.Tag as Chapter));
+            actions.Do(new AddChapterAction(project.Book, new Chapter(d.Title, d.SelectedPosts), outline.SelectedNode.Tag as Chapter));
 
             updateUI();
         }
@@ -286,8 +283,8 @@ namespace Medius
 
         private void updateEditMenu()
         {
-            undoToolStripMenuItem.Enabled = actions.CanUndo;
-            redoToolStripMenuItem.Enabled = actions.CanRedo;
+            undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
+            redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
         }
 
         private void updateOutline()
