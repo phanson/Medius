@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Medius.Controllers;
 using Medius.Model;
+using Medius.Controllers.Actions;
 
 namespace Medius
 {
@@ -113,6 +114,11 @@ namespace Medius
         /// </summary>
         private void populateUI()
         {
+            populateOutline();
+        }
+
+        private void populateOutline()
+        {
             TreeNode bnode, cnode, pnode;
             bnode = new TreeNode(project.Book.Title);
             bnode.Tag = project.Book;
@@ -138,7 +144,7 @@ namespace Medius
             }
 
             outline.Nodes.Add(bnode);
-            
+
             // expand all nodes
             bnode.Expand();
             foreach (TreeNode node in bnode.Nodes)
@@ -150,8 +156,13 @@ namespace Medius
         /// </summary>
         private void clearUI()
         {
-            outline.Nodes.Clear();
+            clearOutline();
             browseWindow.DocumentText = string.Empty;
+        }
+
+        private void clearOutline()
+        {
+            outline.Nodes.Clear();
         }
 
         /// <summary>
@@ -252,6 +263,36 @@ namespace Medius
                 default:
                     throw new Exception();
             }
+        }
+
+        private void addChapterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddChapterDialog d = new AddChapterDialog();
+            if (d.ShowDialog() != DialogResult.OK)
+                return;
+
+            actions.Do(new AddChapterAction(project.Book, new Chapter(d.Title), outline.SelectedNode.Tag as Chapter));
+
+            updateUI();
+        }
+
+        private void updateUI()
+        {
+            updateOutline();
+            updateEditMenu();
+        }
+
+        private void updateEditMenu()
+        {
+            undoToolStripMenuItem.Enabled = actions.CanUndo;
+            redoToolStripMenuItem.Enabled = actions.CanRedo;
+        }
+
+        private void updateOutline()
+        {
+            // TODO: optimize this to rebuild only changed elements
+            clearOutline();
+            populateOutline();
         }
     }
 }

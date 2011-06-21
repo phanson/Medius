@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -48,12 +49,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.outline = new System.Windows.Forms.TreeView();
             this.container = new System.Windows.Forms.SplitContainer();
-            this.browseWindow = new System.Windows.Forms.WebBrowser();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.viewTab = new System.Windows.Forms.TabPage();
+            this.browseWindow = new System.Windows.Forms.WebBrowser();
             this.editTab = new System.Windows.Forms.TabPage();
             this.propTab = new System.Windows.Forms.TabPage();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
+            this.outlineContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addChapterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
             this.container.Panel1.SuspendLayout();
@@ -62,6 +65,7 @@
             this.tabControl.SuspendLayout();
             this.viewTab.SuspendLayout();
             this.propTab.SuspendLayout();
+            this.outlineContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -158,7 +162,7 @@
             this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undoToolStripMenuItem_Click);
             // 
@@ -167,7 +171,7 @@
             this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redoToolStripMenuItem_Click);
             // 
@@ -212,6 +216,7 @@
             // outline
             // 
             this.outline.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.outline.ContextMenuStrip = this.outlineContextMenu;
             this.outline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.outline.Location = new System.Drawing.Point(0, 0);
             this.outline.Name = "outline";
@@ -237,16 +242,6 @@
             this.container.SplitterDistance = 199;
             this.container.TabIndex = 3;
             // 
-            // browseWindow
-            // 
-            this.browseWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browseWindow.Location = new System.Drawing.Point(3, 3);
-            this.browseWindow.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browseWindow.Name = "browseWindow";
-            this.browseWindow.Size = new System.Drawing.Size(265, 237);
-            this.browseWindow.TabIndex = 0;
-            this.browseWindow.WebBrowserShortcutsEnabled = false;
-            // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.viewTab);
@@ -265,17 +260,27 @@
             this.viewTab.Location = new System.Drawing.Point(4, 22);
             this.viewTab.Name = "viewTab";
             this.viewTab.Padding = new System.Windows.Forms.Padding(3);
-            this.viewTab.Size = new System.Drawing.Size(271, 243);
+            this.viewTab.Size = new System.Drawing.Size(386, 391);
             this.viewTab.TabIndex = 0;
             this.viewTab.Text = "View";
             this.viewTab.UseVisualStyleBackColor = true;
+            // 
+            // browseWindow
+            // 
+            this.browseWindow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browseWindow.Location = new System.Drawing.Point(3, 3);
+            this.browseWindow.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browseWindow.Name = "browseWindow";
+            this.browseWindow.Size = new System.Drawing.Size(380, 385);
+            this.browseWindow.TabIndex = 0;
+            this.browseWindow.WebBrowserShortcutsEnabled = false;
             // 
             // editTab
             // 
             this.editTab.Location = new System.Drawing.Point(4, 22);
             this.editTab.Name = "editTab";
             this.editTab.Padding = new System.Windows.Forms.Padding(3);
-            this.editTab.Size = new System.Drawing.Size(271, 243);
+            this.editTab.Size = new System.Drawing.Size(386, 391);
             this.editTab.TabIndex = 1;
             this.editTab.Text = "Edit";
             this.editTab.UseVisualStyleBackColor = true;
@@ -301,6 +306,20 @@
             this.propertyGrid.TabIndex = 0;
             this.propertyGrid.ToolbarVisible = false;
             // 
+            // outlineContextMenu
+            // 
+            this.outlineContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addChapterToolStripMenuItem});
+            this.outlineContextMenu.Name = "outlineContextMenu";
+            this.outlineContextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
+            // addChapterToolStripMenuItem
+            // 
+            this.addChapterToolStripMenuItem.Name = "addChapterToolStripMenuItem";
+            this.addChapterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addChapterToolStripMenuItem.Text = "Add chapter...";
+            this.addChapterToolStripMenuItem.Click += new System.EventHandler(this.addChapterToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +343,7 @@
             this.tabControl.ResumeLayout(false);
             this.viewTab.ResumeLayout(false);
             this.propTab.ResumeLayout(false);
+            this.outlineContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -356,6 +376,8 @@
         private System.Windows.Forms.TabPage editTab;
         private System.Windows.Forms.TabPage propTab;
         private System.Windows.Forms.PropertyGrid propertyGrid;
+        private System.Windows.Forms.ContextMenuStrip outlineContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem addChapterToolStripMenuItem;
     }
 }
 

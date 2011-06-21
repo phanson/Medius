@@ -9,6 +9,19 @@ namespace Medius.Model
     /// </summary>
     public class Chapter
     {
+        public Chapter()
+        {
+            // required for XML serialization
+        }
+
+        public Chapter(string title = "", List<Post> posts = null)
+        {
+            this.Title = title;
+            this.Posts = new List<Post>();
+            if (posts != null)
+                this.Posts.AddRange(posts);
+        }
+
         /// <summary>
         /// The chapter title.
         /// </summary>

@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AbstractOperateOnEachController.cs" />
     <Compile Include="Controllers\Actions\AbstractAction.cs" />
+    <Compile Include="Controllers\Actions\AddChapterAction.cs" />
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
     <Compile Include="Controllers\IExportController.cs" />
     <Compile Include="Controllers\IImportController.cs" />
