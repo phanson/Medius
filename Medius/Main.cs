@@ -121,6 +121,9 @@ namespace Medius
 
         private void populateOutline()
         {
+            // sanity check
+            if ((project == null) || (project.Book == null)) return;
+
             TreeNode bnode, cnode, pnode;
             bnode = new TreeNode(project.Book.Title);
             bnode.Tag = project.Book;

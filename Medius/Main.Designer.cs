@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.statusBar = new System.Windows.Forms.StatusStrip();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,14 +81,6 @@
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // statusBar
-            // 
-            this.statusBar.Location = new System.Drawing.Point(0, 443);
-            this.statusBar.Name = "statusBar";
-            this.statusBar.Size = new System.Drawing.Size(599, 22);
-            this.statusBar.TabIndex = 0;
-            this.statusBar.Text = "statusStrip1";
             // 
             // mainMenu
             // 
@@ -338,7 +329,7 @@
             // toolbar
             // 
             this.toolbar.AllowDrop = true;
-            this.toolbar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolbar.Dock = System.Windows.Forms.DockStyle.None;
             this.toolbar.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolbar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openButton,
@@ -472,7 +463,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(599, 465);
-            this.Controls.Add(this.statusBar);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.mainMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -505,7 +495,6 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip statusBar;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
