@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Medius.Controllers;
 using Medius.Model;
 using Medius.Controllers.Actions;
+using System.Drawing;
 
 namespace Medius
 {
@@ -15,6 +16,7 @@ namespace Medius
 
         string activeFilename;
         bool modified;
+        private bool shouldDragDrop;
 
         public Main()
         {
@@ -24,6 +26,9 @@ namespace Medius
         private void Main_Load(object sender, EventArgs e)
         {
             disableUI();
+            
+            // temporary -- remove edit tab until it is implemented
+            tabControl.TabPages.Remove(editTab);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -104,6 +109,11 @@ namespace Medius
         private void redo_Click(object sender, EventArgs e)
         {
             actions.Redo();
+            updateUI();
+        }
+
+        private void refreshButton_Click(object sender, EventArgs e)
+        {
             updateUI();
         }
 
@@ -240,6 +250,32 @@ namespace Medius
             container.Enabled = true;
         }
 
+        private void getDragDropInfo(DragEventArgs e, out TreeNode source, out TreeNode target)
+        {
+            Point point = outline.PointToClient(new Point(e.X, e.Y));
+            source = (TreeNode)e.Data.GetData(typeof(TreeNode));
+            target = outline.GetNodeAt(point);
+        }
+
+        private void updateUI()
+        {
+            updateOutline();
+            updateEditMenu();
+        }
+
+        private void updateEditMenu()
+        {
+            undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
+            redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
+        }
+
+        private void updateOutline()
+        {
+            // TODO: optimize this to rebuild only changed elements
+            clearOutline();
+            populateOutline();
+        }
+
         #endregion Helper functions
 
         private void outline_AfterSelect(object sender, TreeViewEventArgs e)
@@ -266,7 +302,7 @@ namespace Medius
             }
         }
 
-        private void addChapterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addChapter_Click(object sender, EventArgs e)
         {
             AddChapterDialog d = new AddChapterDialog();
             d.Posts = project.Book.GetAllPosts();
@@ -278,28 +314,90 @@ namespace Medius
             updateUI();
         }
 
-        private void updateUI()
+        #region Drag and Drop methods
+
+        private void outline_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            updateOutline();
-            updateEditMenu();
+            shouldDragDrop = true;
         }
 
-        private void updateEditMenu()
+        private void outline_MouseMove(object sender, MouseEventArgs e)
         {
-            undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
-            redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
+            if (!shouldDragDrop) return;
+            shouldDragDrop = false;
+            // disallow root node
+            if ((outline.SelectedNode == null) || (outline.SelectedNode == outline.Nodes[0])) return;
+            // start drag and drop operation
+            outline.DoDragDrop(outline.SelectedNode, DragDropEffects.Move);
         }
 
-        private void updateOutline()
+        private void outline_DragOver(object sender, DragEventArgs e)
         {
-            // TODO: optimize this to rebuild only changed elements
-            clearOutline();
-            populateOutline();
+            TreeNode source, target;
+            getDragDropInfo(e, out source, out target);
+
+            if ((source.Level >= target.Level) && (source.Level - target.Level < 2))
+                e.Effect = DragDropEffects.Move;
+            else
+                e.Effect = DragDropEffects.None;
         }
 
-        private void refreshButton_Click(object sender, EventArgs e)
+        private void outline_DragDrop(object sender, DragEventArgs e)
         {
+            TreeNode source, target;
+            getDragDropInfo(e, out source, out target);
+
+            switch (source.Level)
+            {
+                case 0:
+                    return;
+                case 1:
+                    dragDrop_Chapter(source, target);
+                    break;
+                case 2:
+                    dragDrop_Post(source, target);
+                    break;
+            }
+        }
+
+        private void dragDrop_Chapter(TreeNode source, TreeNode target)
+        {
+            IReversibleAction action;
+            switch (target.Level)
+            {
+                case 0:
+                    action = new MoveChapterAction(source.Tag as Chapter, target.Tag as Book);
+                    break;
+                case 1:
+                    action = new MoveChapterAction(source.Tag as Chapter, target.Parent.Tag as Book, target.Tag as Chapter);
+                    break;
+                default:
+                    // invalid
+                    return;
+            }
+            actions.Do(action);
             updateUI();
         }
+
+        private void dragDrop_Post(TreeNode source, TreeNode target)
+        {
+            IReversibleAction action;
+            switch (target.Level)
+            {
+                case 1:
+                    action = new MovePostAction(source.Parent.Tag as Chapter, source.Tag as Post, target.Tag as Chapter);
+                    break;
+                case 2:
+                    action = new MovePostAction(source.Parent.Tag as Chapter, source.Tag as Post, target.Parent.Tag as Chapter, target.Tag as Post);
+                    break;
+                default:
+                    // invalid
+                    return;
+            }
+            actions.Do(action);
+            updateUI();
+        }
+
+        #endregion Drag and Drop methods
     }
 }

@@ -47,6 +47,8 @@
     <Compile Include="Controllers\Actions\AbstractAction.cs" />
     <Compile Include="Controllers\Actions\AddChapterAction.cs" />
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
+    <Compile Include="Controllers\Actions\MoveChapterAction.cs" />
+    <Compile Include="Controllers\Actions\MovePostAction.cs" />
     <Compile Include="Controllers\IExportController.cs" />
     <Compile Include="Controllers\IImportController.cs" />
     <Compile Include="Controllers\IOperateOnEachController.cs" />

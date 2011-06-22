@@ -57,5 +57,10 @@ namespace Medius.Model
                 && string.Equals(this.Introduction, that.Introduction);
             // consciously ignoring the impermanent Exclude and Ordering fields
         }
+
+        public override int GetHashCode()
+        {
+            return Title.GetHashCode();
+        }
     }
 }

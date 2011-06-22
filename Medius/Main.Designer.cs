@@ -221,6 +221,7 @@
             // 
             // outline
             // 
+            this.outline.AllowDrop = true;
             this.outline.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.outline.ContextMenuStrip = this.outlineContextMenu;
             this.outline.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -229,6 +230,10 @@
             this.outline.Size = new System.Drawing.Size(197, 414);
             this.outline.TabIndex = 2;
             this.outline.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.outline_AfterSelect);
+            this.outline.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.outline_NodeMouseClick);
+            this.outline.DragDrop += new System.Windows.Forms.DragEventHandler(this.outline_DragDrop);
+            this.outline.DragOver += new System.Windows.Forms.DragEventHandler(this.outline_DragOver);
+            this.outline.MouseMove += new System.Windows.Forms.MouseEventHandler(this.outline_MouseMove);
             // 
             // outlineContextMenu
             // 
@@ -242,7 +247,7 @@
             this.addChapterToolStripMenuItem.Name = "addChapterToolStripMenuItem";
             this.addChapterToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.addChapterToolStripMenuItem.Text = "Add chapter...";
-            this.addChapterToolStripMenuItem.Click += new System.EventHandler(this.addChapterToolStripMenuItem_Click);
+            this.addChapterToolStripMenuItem.Click += new System.EventHandler(this.addChapter_Click);
             // 
             // container
             // 

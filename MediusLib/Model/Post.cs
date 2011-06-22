@@ -87,5 +87,10 @@ namespace Medius.Model
                 && DateTime.Equals(this.PublishDate, that.PublishDate);
             // consciously ignoring the impermanent Exclude and Ordering fields
         }
+
+        public override int GetHashCode()
+        {
+            return Title.GetHashCode() + Content.GetHashCode();
+        }
     }
 }
