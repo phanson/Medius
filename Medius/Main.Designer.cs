@@ -225,15 +225,16 @@
             this.outline.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.outline.ContextMenuStrip = this.outlineContextMenu;
             this.outline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.outline.FullRowSelect = true;
+            this.outline.HideSelection = false;
             this.outline.Location = new System.Drawing.Point(0, 0);
             this.outline.Name = "outline";
             this.outline.Size = new System.Drawing.Size(197, 414);
             this.outline.TabIndex = 2;
+            this.outline.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.outline_ItemDrag);
             this.outline.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.outline_AfterSelect);
-            this.outline.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.outline_NodeMouseClick);
             this.outline.DragDrop += new System.Windows.Forms.DragEventHandler(this.outline_DragDrop);
             this.outline.DragOver += new System.Windows.Forms.DragEventHandler(this.outline_DragOver);
-            this.outline.MouseMove += new System.Windows.Forms.MouseEventHandler(this.outline_MouseMove);
             // 
             // outlineContextMenu
             // 

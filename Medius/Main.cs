@@ -16,7 +16,6 @@ namespace Medius
 
         string activeFilename;
         bool modified;
-        private bool shouldDragDrop;
 
         public Main()
         {
@@ -200,6 +199,9 @@ namespace Medius
             // load into memory
             project = projectLoader.Load(d.FileName);
 
+            // fix up ordering constraints, etc
+            normalize(project.Book);
+
             // bookkeeping
             activeFilename = d.FileName;
             modified = false;
@@ -236,6 +238,25 @@ namespace Medius
             // save to file
             projectLoader.Save(project, activeFilename);
             modified = false;
+        }
+
+        /// <summary>
+        /// Ensures that the book is in a state such that our assumptions about ordering, etc. hold true.
+        /// </summary>
+        /// <param name="book">The book.</param>
+        private static void normalize(Book book)
+        {
+            book.Chapters.Sort(Util.Helpers.ChapterSort);
+            for (int i = 0; i < book.Chapters.Count; i++)
+            {
+                Chapter c = book.Chapters[i];
+                c.Ordering = i;
+                c.Posts.Sort(Util.Helpers.PostSort);
+                for (int j = 0; j < c.Posts.Count; j++)
+                {
+                    c.Posts[j].Ordering = j;
+                }
+            }
         }
 
         private void disableUI()
@@ -316,15 +337,8 @@ namespace Medius
 
         #region Drag and Drop methods
 
-        private void outline_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void outline_ItemDrag(object sender, ItemDragEventArgs e)
         {
-            shouldDragDrop = true;
-        }
-
-        private void outline_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!shouldDragDrop) return;
-            shouldDragDrop = false;
             // disallow root node
             if ((outline.SelectedNode == null) || (outline.SelectedNode == outline.Nodes[0])) return;
             // start drag and drop operation
