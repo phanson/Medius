@@ -13,7 +13,7 @@ namespace Medius.Controllers
         public Book Load(Stream stream)
         {
             // I am aware that this is embarrasingly simple.
-            // it's called code reuse.
+            // it's called code reuse. (it's also called error-prone.)
             return (Book)new XmlSerializer(typeof(Book)).Deserialize(stream);
         }
 

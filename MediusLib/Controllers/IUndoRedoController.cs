@@ -34,5 +34,10 @@ namespace Medius.Controllers
         /// </summary>
         /// <returns>The action, or <c>null</c> if there is nothing to undo.</returns>
         IReversibleAction Redo();
+
+        /// <summary>
+        /// Erase the undo/redo history.
+        /// </summary>
+        void Clear();
     }
 }

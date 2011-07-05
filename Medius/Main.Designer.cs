@@ -67,6 +67,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.wordPressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -118,11 +119,11 @@
             // 
             // importToolStripMenuItem
             // 
-            this.importToolStripMenuItem.Enabled = false;
+            this.importToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wordPressToolStripMenuItem});
             this.importToolStripMenuItem.Name = "importToolStripMenuItem";
             this.importToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.importToolStripMenuItem.Text = "I&mport...";
-            this.importToolStripMenuItem.Click += new System.EventHandler(this.import_Click);
             // 
             // exportToolStripMenuItem
             // 
@@ -130,7 +131,6 @@
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exportToolStripMenuItem.Text = "&Export...";
-            this.exportToolStripMenuItem.Click += new System.EventHandler(this.export_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -464,6 +464,13 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
+            // wordPressToolStripMenuItem
+            // 
+            this.wordPressToolStripMenuItem.Name = "wordPressToolStripMenuItem";
+            this.wordPressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wordPressToolStripMenuItem.Text = "WordPress";
+            this.wordPressToolStripMenuItem.Click += new System.EventHandler(this.wordPressToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -538,6 +545,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton helpButton;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripMenuItem wordPressToolStripMenuItem;
     }
 }
 

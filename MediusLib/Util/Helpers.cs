@@ -9,7 +9,7 @@ namespace Medius.Util
     /// <summary>
     /// A collection of sort functions, for now.
     /// </summary>
-    public class Helpers
+    public static class Helpers
     {
         /// <summary>
         /// Generalized sort comparison function for ordering posts.

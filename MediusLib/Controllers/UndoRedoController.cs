@@ -50,5 +50,11 @@ namespace Medius.Controllers
 
             return action;
         }
+
+        public void Clear()
+        {
+            done.Clear();
+            undone.Clear();
+        }
     }
 }

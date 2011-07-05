@@ -1,13 +1,14 @@
-﻿namespace Medius.Controllers
+﻿using Medius.Model;
+
+namespace Medius.Controllers
 {
     public interface IImportController
     {
         /// <summary>
-        /// Convert the given input file into BXF format and save the result in the specified location.
+        /// Convert the given input file into a Medius project.
         /// </summary>
         /// <param name="inputFilename">Path to input file in application-specific format.</param>
-        /// <param name="outputFilename">Path to output file in BXF format.</param>
-        /// <returns><c>true</c> on success.</returns>
-        bool Import(string inputFilename, string outputFilename);
+        /// <returns><c>null</c> on failure.</returns>
+        Project Import(string inputFilename);
     }
 }

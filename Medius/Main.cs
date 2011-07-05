@@ -33,25 +33,16 @@ namespace Medius
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             // confirm close if not saved
-            e.Cancel = (modified && (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to close?", "Confirm exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.No));
+            e.Cancel = (modified && !confirmContinueOverwrite());
         }
 
-        private void import_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Ask the user whether to wipe out unsaved changes.
+        /// </summary>
+        /// <returns><c>true</c> iff changes should be overwritten.</returns>
+        private bool confirmContinueOverwrite()
         {
-            // select import format
-            // TODO
-
-            // run import
-            // TODO
-        }
-
-        private void export_Click(object sender, EventArgs e)
-        {
-            // select export format
-            // TODO
-
-            // run export
-            // TODO
+            return (MessageBox.Show(this, "There are unsaved changes. Are you sure you want to continue?", "Confirm overwrite", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.Yes);
         }
 
         #region Simple menu items
@@ -413,5 +404,33 @@ namespace Medius
         }
 
         #endregion Drag and Drop methods
+
+        private void wordPressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.AddExtension = true;
+            d.DefaultExt = ".xml";
+            d.Filter = "WordPress eXtended RSS (*.xml)|*.xml";
+            d.Multiselect = false;
+            d.Title = "Open WordPress export file";
+            if (d.ShowDialog() != DialogResult.OK)
+                return;
+
+            if (modified && !confirmContinueOverwrite())
+                return;
+
+            IImportController importer = new WordpressImportController(new XmlPersistenceController());
+            actions.Clear();
+            project = importer.Import(d.FileName);
+
+            // fix any lingering order problems
+            normalize(project.Book);
+
+            // bookkeeping
+            activeFilename = null;  // force "save as"
+            modified = false;
+            
+            updateUI();
+        }
     }
 }
