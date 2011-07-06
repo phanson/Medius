@@ -1,13 +1,24 @@
-﻿namespace Medius.Controllers
+﻿using Medius.Model;
+using System.IO;
+
+namespace Medius.Controllers
 {
     public interface IExportController
     {
         /// <summary>
-        /// Convert the given input file out of BXF format and save the result in the specified location.
+        /// Export the given project to the specified location.
         /// </summary>
-        /// <param name="inputFilename">Path to input file in BXF format.</param>
+        /// <param name="project">Project to export.</param>
         /// <param name="outputFilename">Path to output file in application-specific format.</param>
         /// <returns><c>true</c> on success.</returns>
-        bool Export(string inputFilename, string outputFilename);
+        bool Export(Project project, string outputFilename);
+
+        /// <summary>
+        /// Export the given project to the given stream.
+        /// </summary>
+        /// <param name="project">Project to export.</param>
+        /// <param name="output">Arbitrary stream.</param>
+        /// <returns><c>true</c> on success.</returns>
+        bool Export(Project project, Stream output);
     }
 }

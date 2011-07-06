@@ -413,5 +413,18 @@ namespace Medius
         }
 
         #endregion Drag and Drop methods
+
+        private void htmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog d = new SaveFileDialog();
+            d.Filter = "HTML Files (*.htm,*.html)|*.htm,*.html";
+            d.DefaultExt = "htm";
+            d.OverwritePrompt = true;
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                HtmlExportController exporter = new HtmlExportController();
+                exporter.Export(project, d.FileName);
+            }
+        }
     }
 }
