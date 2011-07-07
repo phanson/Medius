@@ -8,17 +8,14 @@ namespace Medius.Controllers
     /// </summary>
     public abstract class AbstractExportController : IExportController
     {
-        public virtual bool Export(Project project, string outputFilename)
+        public virtual void Export(Project project, string outputFilename)
         {
-            bool result;
             using (FileStream outfile = new FileStream(outputFilename, FileMode.Create))
             {
-                result = Export(project, outfile);
-                outfile.Flush();
+                Export(project, outfile);
             }
-            return result;
         }
 
-        public abstract bool Export(Project project, Stream output);
+        public abstract void Export(Project project, Stream output);
     }
 }

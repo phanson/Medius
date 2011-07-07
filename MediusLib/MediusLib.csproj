@@ -50,6 +50,7 @@
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
     <Compile Include="Controllers\Actions\MoveChapterAction.cs" />
     <Compile Include="Controllers\Actions\MovePostAction.cs" />
+    <Compile Include="Controllers\FilePersistenceController.cs" />
     <Compile Include="Controllers\HtmlExportController.cs" />
     <Compile Include="Controllers\IExportController.cs" />
     <Compile Include="Controllers\IImportController.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Controllers\IBookPersistenceController.cs" />
     <Compile Include="Controllers\IProjectPersistenceController.cs" />
     <Compile Include="Controllers\IUndoRedoController.cs" />
+    <Compile Include="Controllers\KindleExportController.cs" />
     <Compile Include="Controllers\ProjectPersistenceController.cs" />
     <Compile Include="Controllers\UndoRedoController.cs" />
     <Compile Include="Controllers\XmlPersistenceController.cs" />

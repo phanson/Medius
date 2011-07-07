@@ -422,8 +422,22 @@ namespace Medius
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
             {
-                HtmlExportController exporter = new HtmlExportController();
-                exporter.Export(project, d.FileName);
+                HtmlExportController htmlExport = new HtmlExportController();
+                htmlExport.Export(project, d.FileName);
+            }
+        }
+
+        private void kindleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog d = new SaveFileDialog();
+            d.Filter = "Zipped HTML (*.zip)|*.zip";
+            d.DefaultExt = "zip";
+            d.OverwritePrompt = true;
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                HtmlExportController htmlExport = new HtmlExportController();
+                KindleExportController kindleExport = new KindleExportController(htmlExport);
+                kindleExport.Export(project, d.FileName);
             }
         }
     }

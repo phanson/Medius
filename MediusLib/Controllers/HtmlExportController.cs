@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Medius.Model;
-using System.IO;
+﻿using System.IO;
 using System.Xml;
+using Medius.Model;
 
 namespace Medius.Controllers
 {
     public class HtmlExportController : AbstractExportController
     {
-        public override bool Export(Project project, Stream output)
+        public override void Export(Project project, Stream output)
         {
             using (XmlWriter writer = XmlWriter.Create(output))
             {
@@ -47,7 +43,6 @@ namespace Medius.Controllers
                 writer.WriteEndElement();  // body
                 writer.WriteEndElement();  // html
             }
-            return true;
         }
     }
 }

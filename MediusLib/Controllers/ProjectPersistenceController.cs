@@ -12,6 +12,7 @@ namespace Medius.Controllers
     public class ProjectPersistenceController : IProjectPersistenceController
     {
         IBookPersistenceController bookLoader = new XmlPersistenceController();
+        FilePersistenceController fileController = new FilePersistenceController();
 
         protected readonly string[] textFile = { "txt", "xml", "css", "htm", "html", "tex", "bib" };
 
@@ -79,36 +80,10 @@ namespace Medius.Controllers
                 foreach (var file in project.Files)
                 {
                     zipStream.PutNextEntry(new ZipEntry(file.Filename));
-                    writeSupportFile(file, zipStream);
+                    fileController.WriteSupportFile(file, zipStream);
                     zipStream.CloseEntry();
                 }
             }
-        }
-
-        protected void writeSupportFile(ISupportFile file, Stream stream)
-        {
-            switch (file.FileType)
-            {
-                case SupportFileType.Text:
-                    writeSupportFile(file as TextFile, stream);
-                    break;
-                case SupportFileType.Binary:
-                    writeSupportFile(file as BinaryFile, stream);
-                    break;
-            }
-        }
-
-        protected virtual void writeSupportFile(TextFile file, Stream stream)
-        {
-            using (StreamWriter writer = new StreamWriter(stream, new UnicodeEncoding()))
-            {
-                writer.Write(file.Data);
-            }
-        }
-
-        protected virtual void writeSupportFile(BinaryFile file, Stream stream)
-        {
-            stream.Write(file.Data, 0, file.Data.Length);
         }
     }
 }

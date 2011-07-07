@@ -68,6 +68,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.kindleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -128,7 +129,8 @@
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.htmlToolStripMenuItem});
+            this.htmlToolStripMenuItem,
+            this.kindleToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exportToolStripMenuItem.Text = "&Export...";
@@ -473,6 +475,13 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
+            // kindleToolStripMenuItem
+            // 
+            this.kindleToolStripMenuItem.Name = "kindleToolStripMenuItem";
+            this.kindleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kindleToolStripMenuItem.Text = "Kindle";
+            this.kindleToolStripMenuItem.Click += new System.EventHandler(this.kindleToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -548,6 +557,7 @@
         private System.Windows.Forms.ToolStripButton helpButton;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStripMenuItem htmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
     }
 }
 
