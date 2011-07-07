@@ -417,7 +417,7 @@ namespace Medius
         private void htmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog d = new SaveFileDialog();
-            d.Filter = "HTML Files (*.htm,*.html)|*.htm,*.html";
+            d.Filter = "HTML Files (*.htm,*.html)|*.htm;*.html";
             d.DefaultExt = "htm";
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
