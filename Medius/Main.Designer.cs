@@ -35,6 +35,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.htmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,6 +69,7 @@
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.wordPressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kindleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -127,10 +129,19 @@
             // 
             // exportToolStripMenuItem
             // 
-            this.exportToolStripMenuItem.Enabled = false;
+            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.htmlToolStripMenuItem,
+            this.kindleToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exportToolStripMenuItem.Text = "&Export...";
+            // 
+            // htmlToolStripMenuItem
+            // 
+            this.htmlToolStripMenuItem.Name = "htmlToolStripMenuItem";
+            this.htmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.htmlToolStripMenuItem.Text = "HTML";
+            this.htmlToolStripMenuItem.Click += new System.EventHandler(this.htmlToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -470,6 +481,12 @@
             this.wordPressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wordPressToolStripMenuItem.Text = "WordPress";
             this.wordPressToolStripMenuItem.Click += new System.EventHandler(this.wordPressToolStripMenuItem_Click);
+            // kindleToolStripMenuItem
+            // 
+            this.kindleToolStripMenuItem.Name = "kindleToolStripMenuItem";
+            this.kindleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kindleToolStripMenuItem.Text = "Kindle";
+            this.kindleToolStripMenuItem.Click += new System.EventHandler(this.kindleToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -546,6 +563,8 @@
         private System.Windows.Forms.ToolStripButton helpButton;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
         private System.Windows.Forms.ToolStripMenuItem wordPressToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem htmlToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
     }
 }
 

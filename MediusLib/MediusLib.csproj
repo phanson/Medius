@@ -43,18 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AbstractExportController.cs" />
     <Compile Include="Controllers\AbstractOperateOnEachController.cs" />
     <Compile Include="Controllers\Actions\AbstractAction.cs" />
     <Compile Include="Controllers\Actions\AddChapterAction.cs" />
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
     <Compile Include="Controllers\Actions\MoveChapterAction.cs" />
     <Compile Include="Controllers\Actions\MovePostAction.cs" />
+    <Compile Include="Controllers\FilePersistenceController.cs" />
+    <Compile Include="Controllers\HtmlExportController.cs" />
     <Compile Include="Controllers\IExportController.cs" />
     <Compile Include="Controllers\IImportController.cs" />
     <Compile Include="Controllers\IOperateOnEachController.cs" />
     <Compile Include="Controllers\IBookPersistenceController.cs" />
     <Compile Include="Controllers\IProjectPersistenceController.cs" />
     <Compile Include="Controllers\IUndoRedoController.cs" />
+    <Compile Include="Controllers\KindleExportController.cs" />
     <Compile Include="Controllers\ProjectPersistenceController.cs" />
     <Compile Include="Controllers\UndoRedoController.cs" />
     <Compile Include="Controllers\WordpressImportController.cs" />
@@ -69,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Helpers.cs" />
     <Compile Include="Util\XmlTransformer.cs" />
+    <Compile Include="Util\XmlValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controllers\wp2book.xsl">

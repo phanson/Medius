@@ -432,5 +432,29 @@ namespace Medius
             
             updateUI();
         }
+
+        private void htmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog d = new SaveFileDialog();
+            d.Filter = "HTML Files (*.htm,*.html)|*.htm;*.html";
+            d.DefaultExt = "htm";
+            d.OverwritePrompt = true;
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                new HtmlExportController().Export(project, d.FileName);
+            }
+        }
+
+        private void kindleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog d = new SaveFileDialog();
+            d.Filter = "Zipped HTML (*.zip)|*.zip";
+            d.DefaultExt = "zip";
+            d.OverwritePrompt = true;
+            if (d.ShowDialog() == DialogResult.OK)
+            {
+                new KindleExportController().Export(project, d.FileName);
+            }
+        }
     }
 }
