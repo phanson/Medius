@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Schema;
+using System.IO;
 
 namespace Medius.Util
 {
@@ -35,21 +36,15 @@ namespace Medius.Util
         /// <param name="schema">URI of the schema.</param>
         /// <param name="xml">URI of the XML document.</param>
         /// <returns><c>true</c> if validation is successful</returns>
-        public bool Validate(string schemaURI, string xmlURI)
+        public bool Validate(Stream schema, Stream xml)
         {
-            if (String.IsNullOrWhiteSpace(schemaURI))
-            {
-                errors.Add(new ValidationError(-1, -1, "Could not find schema"));
-                return false;
-            }
-
             XmlReaderSettings s = new XmlReaderSettings();
             s.ValidationFlags = XmlSchemaValidationFlags.ReportValidationWarnings | XmlSchemaValidationFlags.ProcessIdentityConstraints;
             s.ValidationType = ValidationType.Schema;
             s.ValidationEventHandler += new ValidationEventHandler(ValidationHandler);
-            s.Schemas.Add(null, schemaURI);
+            s.Schemas.Add(null, XmlReader.Create(schema));
 
-            XmlReader reader = XmlReader.Create(xmlURI, s);
+            XmlReader reader = XmlReader.Create(xml, s);
 
             try
             {
