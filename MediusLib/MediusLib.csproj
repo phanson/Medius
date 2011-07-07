@@ -70,7 +70,10 @@
     <Compile Include="Model\ISupportFile.cs" />
     <Compile Include="Model\TextFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\Helpers.cs" />
+    <Compile Include="Util\Helpers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Util\XmlValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controllers\wp2book.xsl" />
