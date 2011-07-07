@@ -422,8 +422,7 @@ namespace Medius
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
             {
-                HtmlExportController htmlExport = new HtmlExportController();
-                htmlExport.Export(project, d.FileName);
+                new HtmlExportController().Export(project, d.FileName);
             }
         }
 
@@ -435,9 +434,7 @@ namespace Medius
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
             {
-                HtmlExportController htmlExport = new HtmlExportController();
-                KindleExportController kindleExport = new KindleExportController(htmlExport);
-                kindleExport.Export(project, d.FileName);
+                new KindleExportController().Export(project, d.FileName);
             }
         }
     }

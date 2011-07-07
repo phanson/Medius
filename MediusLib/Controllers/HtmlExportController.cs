@@ -6,6 +6,13 @@ namespace Medius.Controllers
 {
     public class HtmlExportController : AbstractExportController
     {
+        string[] cssFiles;
+
+        public HtmlExportController(params string[] cssFiles)
+        {
+            this.cssFiles = cssFiles ?? new string[] { };
+        }
+
         public override void Export(Project project, Stream output)
         {
             using (XmlWriter writer = XmlWriter.Create(output))
@@ -15,6 +22,14 @@ namespace Medius.Controllers
 
                 writer.WriteStartElement("head");
                 writer.WriteElementString("title", project.Book.Title);
+                foreach (string file in cssFiles)
+                {
+                    writer.WriteStartElement("link");
+                    writer.WriteAttributeString("rel", "stylesheet");
+                    writer.WriteAttributeString("type", "text/css");
+                    writer.WriteAttributeString("href", file);
+                    writer.WriteEndElement();  // link
+                }
                 writer.WriteEndElement();  // head
 
                 writer.WriteStartElement("body");
