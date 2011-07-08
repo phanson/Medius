@@ -419,6 +419,8 @@ namespace Medius
             if (modified && !confirmContinueOverwrite())
                 return;
 
+            disableUI();
+
             IImportController importer = new WordpressImportController(new XmlPersistenceController());
             actions.Clear();
             project = importer.Import(d.FileName);
@@ -431,6 +433,7 @@ namespace Medius
             modified = false;
             
             updateUI();
+            enableUI();
         }
 
         private void htmlToolStripMenuItem_Click(object sender, EventArgs e)
@@ -441,8 +444,11 @@ namespace Medius
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
             {
+                disableUI();
                 new HtmlExportController().Export(project, d.FileName);
+                enableUI();
             }
+            // TODO: display status message
         }
 
         private void kindleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -453,8 +459,11 @@ namespace Medius
             d.OverwritePrompt = true;
             if (d.ShowDialog() == DialogResult.OK)
             {
+                disableUI();
                 new KindleExportController().Export(project, d.FileName);
+                enableUI();
             }
+            // TODO: display status message
         }
     }
 }
