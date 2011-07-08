@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using System.IO;
-using Medius.Model;
 using System.Reflection;
+using Medius.Model;
+using Medius.Util;
 
 namespace Medius.Controllers
 {
@@ -27,9 +25,29 @@ namespace Medius.Controllers
                 using (Stream xslt = Assembly.GetExecutingAssembly().GetManifestResourceStream("Medius.Controllers.wp2book.xsl"))
                 {
                     // transform stream to stream
-                    Util.XmlTransformer.Transform(xslt, wpFile, output);
+                    XmlTransformer.Transform(xslt, wpFile, output);
                 }
 
+                // rewind and validate
+                output.Seek(0, SeekOrigin.Begin);
+                using (Stream xsd = Assembly.GetExecutingAssembly().GetManifestResourceStream("Medius.Model.book.xsd"))
+                {
+                    XmlValidator validator = new XmlValidator();
+                    if (!validator.Validate(xsd, output))
+                    {
+                        throw new InvalidDataException(
+                        "Could not load book XML.\r\nCause(s):\r\n" +
+                            string.Join("\r\n", validator.Errors.Select(
+                                e => string.Format(
+                                    "Line {0} Col {1}: {2}", e.Line, e.Column, e.Message
+                                    )
+                                )
+                            )
+                        );
+                    }
+                }
+
+                // rewind again and deserialize
                 output.Seek(0, SeekOrigin.Begin);
                 book = books.Load(output);
             }
