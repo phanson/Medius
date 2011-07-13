@@ -471,5 +471,15 @@ namespace Medius
             actions.Do(new RemoveImagesAction(project.Book.GetAllPosts()));
             updateUI();
         }
+
+        private void findReplaceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FindReplaceDialog d = new FindReplaceDialog();
+            if (d.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            actions.Do(new FindReplaceAction(project.Book.GetAllPosts(), d.Pattern, d.Replacement, d.ShouldUseRegex));
+            updateUI();
+        }
     }
 }

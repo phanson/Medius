@@ -71,6 +71,7 @@
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.removeImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -211,6 +212,7 @@
             // 
             this.cleanupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.removeImagesToolStripMenuItem,
+            this.findReplaceToolStripMenuItem,
             this.runScriptToolStripMenuItem});
             this.cleanupToolStripMenuItem.Name = "cleanupToolStripMenuItem";
             this.cleanupToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -498,6 +500,13 @@
             this.removeImagesToolStripMenuItem.Text = "Remove images";
             this.removeImagesToolStripMenuItem.Click += new System.EventHandler(this.removeImagesToolStripMenuItem_Click);
             // 
+            // findReplaceToolStripMenuItem
+            // 
+            this.findReplaceToolStripMenuItem.Name = "findReplaceToolStripMenuItem";
+            this.findReplaceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.findReplaceToolStripMenuItem.Text = "Find/Replace...";
+            this.findReplaceToolStripMenuItem.Click += new System.EventHandler(this.findReplaceToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,6 +585,7 @@
         private System.Windows.Forms.ToolStripMenuItem htmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeImagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem findReplaceToolStripMenuItem;
     }
 }
 

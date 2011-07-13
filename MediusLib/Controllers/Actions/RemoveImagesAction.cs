@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Medius.Model;
+﻿using System.Collections.Generic;
 using System.Xml;
+using Medius.Model;
 
 namespace Medius.Controllers.Actions
 {
@@ -12,7 +9,7 @@ namespace Medius.Controllers.Actions
         // this is less than optimal, but it is expedient. TODO: fix it later.
         Dictionary<string, string> undoTable = new Dictionary<string, string>();
 
-        public RemoveImagesAction(List<Post> items)
+        public RemoveImagesAction(IEnumerable<Post> items)
             : base(items)
         {
         }
