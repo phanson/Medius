@@ -466,9 +466,13 @@ namespace Medius
             // TODO: display status message
         }
 
-        private void removeImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void removeNodesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            actions.Do(new RemoveImagesAction(project.Book.GetAllPosts()));
+            RemoveNodesDialog d = new RemoveNodesDialog();
+            if (d.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            actions.Do(new RemoveNodesAction(project.Book.GetAllPosts(), d.XPath));
             updateUI();
         }
 

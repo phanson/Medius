@@ -70,7 +70,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.removeImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
@@ -211,7 +211,7 @@
             // cleanupToolStripMenuItem
             // 
             this.cleanupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.removeImagesToolStripMenuItem,
+            this.removeNodesToolStripMenuItem,
             this.findReplaceToolStripMenuItem,
             this.runScriptToolStripMenuItem});
             this.cleanupToolStripMenuItem.Name = "cleanupToolStripMenuItem";
@@ -222,7 +222,7 @@
             // 
             this.runScriptToolStripMenuItem.Enabled = false;
             this.runScriptToolStripMenuItem.Name = "runScriptToolStripMenuItem";
-            this.runScriptToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.runScriptToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.runScriptToolStripMenuItem.Text = "&Run script";
             // 
             // helpToolStripMenuItem
@@ -493,17 +493,17 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
-            // removeImagesToolStripMenuItem
+            // removeNodesToolStripMenuItem
             // 
-            this.removeImagesToolStripMenuItem.Name = "removeImagesToolStripMenuItem";
-            this.removeImagesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.removeImagesToolStripMenuItem.Text = "Remove images";
-            this.removeImagesToolStripMenuItem.Click += new System.EventHandler(this.removeImagesToolStripMenuItem_Click);
+            this.removeNodesToolStripMenuItem.Name = "removeNodesToolStripMenuItem";
+            this.removeNodesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.removeNodesToolStripMenuItem.Text = "Remove nodes...";
+            this.removeNodesToolStripMenuItem.Click += new System.EventHandler(this.removeNodesToolStripMenuItem_Click);
             // 
             // findReplaceToolStripMenuItem
             // 
             this.findReplaceToolStripMenuItem.Name = "findReplaceToolStripMenuItem";
-            this.findReplaceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.findReplaceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.findReplaceToolStripMenuItem.Text = "Find/Replace...";
             this.findReplaceToolStripMenuItem.Click += new System.EventHandler(this.findReplaceToolStripMenuItem_Click);
             // 
@@ -584,7 +584,7 @@
         private System.Windows.Forms.ToolStripMenuItem wordPressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem htmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem removeImagesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeNodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findReplaceToolStripMenuItem;
     }
 }

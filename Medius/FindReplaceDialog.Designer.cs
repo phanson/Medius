@@ -131,6 +131,7 @@
             this.Controls.Add(this.replaceLabel);
             this.Controls.Add(this.findLabel);
             this.Name = "FindReplaceDialog";
+            this.ShowIcon = false;
             this.Text = "Find/Replace";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -4,14 +4,17 @@ using Medius.Model;
 
 namespace Medius.Controllers.Actions
 {
-    public class RemoveImagesAction : AbstractOperateOnEachAction<Post>
+    public class RemoveNodesAction : AbstractOperateOnEachAction<Post>
     {
         // this is less than optimal, but it is expedient. TODO: fix it later.
         Dictionary<string, string> undoTable = new Dictionary<string, string>();
 
-        public RemoveImagesAction(IEnumerable<Post> items)
+        string xpath;
+
+        public RemoveNodesAction(IEnumerable<Post> items, string xpath)
             : base(items)
         {
+            this.xpath = xpath;
         }
 
         protected override void InternalDoForEach(Post item)
@@ -23,15 +26,15 @@ namespace Medius.Controllers.Actions
             {
                 var xml = new XmlDocument().CreateDocumentFragment();
                 xml.InnerXml = before;
-                foreach (XmlNode node in xml.SelectNodes("//img"))
+                foreach (XmlNode node in xml.SelectNodes(xpath))
                     node.ParentNode.RemoveChild(node);
 
                 after = xml.InnerXml;
             }
             catch (XmlException)
             {
-                return;  // ignore malformed documents
-                // TODO: log errors
+                // skip malformed items for now
+                return;
             }
 
             undoTable[after] = before;

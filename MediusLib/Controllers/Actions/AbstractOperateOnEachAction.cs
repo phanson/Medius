@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace Medius.Controllers.Actions
 {
@@ -37,8 +38,17 @@ namespace Medius.Controllers.Actions
 
         protected override void InternalDo()
         {
-            foreach(var item in Items)
-                InternalDoForEach(item);
+            try
+            {
+                foreach (var item in Items)
+                    InternalDoForEach(item);
+            }
+            catch (Exception)
+            {
+                // rollback
+                InternalUndo();
+                throw;
+            }
         }
 
         protected override void InternalUndo()

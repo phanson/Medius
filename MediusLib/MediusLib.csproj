@@ -51,7 +51,7 @@
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
     <Compile Include="Controllers\Actions\MoveChapterAction.cs" />
     <Compile Include="Controllers\Actions\MovePostAction.cs" />
-    <Compile Include="Controllers\Actions\RemoveImagesAction.cs" />
+    <Compile Include="Controllers\Actions\RemoveNodesAction.cs" />
     <Compile Include="Controllers\FilePersistenceController.cs" />
     <Compile Include="Controllers\HtmlExportController.cs" />
     <Compile Include="Controllers\IExportController.cs" />
