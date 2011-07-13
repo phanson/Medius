@@ -81,6 +81,12 @@
     <Compile Include="RemoveNodesDialog.Designer.cs">
       <DependentUpon>RemoveNodesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ValidateHtmlDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ValidateHtmlDialog.Designer.cs">
+      <DependentUpon>ValidateHtmlDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +111,9 @@
     </Compile>
     <EmbeddedResource Include="RemoveNodesDialog.resx">
       <DependentUpon>RemoveNodesDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValidateHtmlDialog.resx">
+      <DependentUpon>ValidateHtmlDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

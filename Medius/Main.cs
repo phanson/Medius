@@ -485,5 +485,10 @@ namespace Medius
             actions.Do(new FindReplaceAction(project.Book.GetAllPosts(), d.Pattern, d.Replacement, d.ShouldUseRegex));
             updateUI();
         }
+
+        private void validateHtmlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ValidateHtmlDialog() { Posts = project.Book.GetAllPosts() }.ShowDialog();
+        }
     }
 }

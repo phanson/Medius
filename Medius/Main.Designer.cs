@@ -45,6 +45,8 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.findReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.referenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,8 +72,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.removeNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.findReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.validateHtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -195,7 +196,7 @@
             this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undo_Click);
             // 
@@ -204,19 +205,34 @@
             this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redo_Click);
             // 
             // cleanupToolStripMenuItem
             // 
             this.cleanupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.validateHtmlToolStripMenuItem,
             this.removeNodesToolStripMenuItem,
             this.findReplaceToolStripMenuItem,
             this.runScriptToolStripMenuItem});
             this.cleanupToolStripMenuItem.Name = "cleanupToolStripMenuItem";
             this.cleanupToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.cleanupToolStripMenuItem.Text = "&Cleanup";
+            // 
+            // removeNodesToolStripMenuItem
+            // 
+            this.removeNodesToolStripMenuItem.Name = "removeNodesToolStripMenuItem";
+            this.removeNodesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.removeNodesToolStripMenuItem.Text = "Remove nodes...";
+            this.removeNodesToolStripMenuItem.Click += new System.EventHandler(this.removeNodesToolStripMenuItem_Click);
+            // 
+            // findReplaceToolStripMenuItem
+            // 
+            this.findReplaceToolStripMenuItem.Name = "findReplaceToolStripMenuItem";
+            this.findReplaceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.findReplaceToolStripMenuItem.Text = "Find/Replace...";
+            this.findReplaceToolStripMenuItem.Click += new System.EventHandler(this.findReplaceToolStripMenuItem_Click);
             // 
             // runScriptToolStripMenuItem
             // 
@@ -493,19 +509,12 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
-            // removeNodesToolStripMenuItem
+            // validateHtmlToolStripMenuItem
             // 
-            this.removeNodesToolStripMenuItem.Name = "removeNodesToolStripMenuItem";
-            this.removeNodesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.removeNodesToolStripMenuItem.Text = "Remove nodes...";
-            this.removeNodesToolStripMenuItem.Click += new System.EventHandler(this.removeNodesToolStripMenuItem_Click);
-            // 
-            // findReplaceToolStripMenuItem
-            // 
-            this.findReplaceToolStripMenuItem.Name = "findReplaceToolStripMenuItem";
-            this.findReplaceToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.findReplaceToolStripMenuItem.Text = "Find/Replace...";
-            this.findReplaceToolStripMenuItem.Click += new System.EventHandler(this.findReplaceToolStripMenuItem_Click);
+            this.validateHtmlToolStripMenuItem.Name = "validateHtmlToolStripMenuItem";
+            this.validateHtmlToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.validateHtmlToolStripMenuItem.Text = "Validate HTML...";
+            this.validateHtmlToolStripMenuItem.Click += new System.EventHandler(this.validateHtmlToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -586,6 +595,7 @@
         private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeNodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findReplaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem validateHtmlToolStripMenuItem;
     }
 }
 

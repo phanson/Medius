@@ -9,6 +9,7 @@ namespace Medius.Controllers.Actions
         // this is less than optimal, but it is expedient. TODO: fix it later.
         Dictionary<string, string> undoTable = new Dictionary<string, string>();
 
+        private XmlDocument doc = new XmlDocument();  // dummy xmldocument
         string xpath;
 
         public RemoveNodesAction(IEnumerable<Post> items, string xpath)
@@ -24,7 +25,7 @@ namespace Medius.Controllers.Actions
 
             try
             {
-                var xml = new XmlDocument().CreateDocumentFragment();
+                var xml = doc.CreateDocumentFragment();
                 xml.InnerXml = before;
                 foreach (XmlNode node in xml.SelectNodes(xpath))
                     node.ParentNode.RemoveChild(node);
