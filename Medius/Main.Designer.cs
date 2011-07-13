@@ -34,8 +34,10 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordPressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.htmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kindleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,8 +70,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.wordPressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kindleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -127,6 +128,13 @@
             this.importToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.importToolStripMenuItem.Text = "I&mport...";
             // 
+            // wordPressToolStripMenuItem
+            // 
+            this.wordPressToolStripMenuItem.Name = "wordPressToolStripMenuItem";
+            this.wordPressToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.wordPressToolStripMenuItem.Text = "WordPress";
+            this.wordPressToolStripMenuItem.Click += new System.EventHandler(this.wordPressToolStripMenuItem_Click);
+            // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,9 +147,16 @@
             // htmlToolStripMenuItem
             // 
             this.htmlToolStripMenuItem.Name = "htmlToolStripMenuItem";
-            this.htmlToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.htmlToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.htmlToolStripMenuItem.Text = "HTML";
             this.htmlToolStripMenuItem.Click += new System.EventHandler(this.htmlToolStripMenuItem_Click);
+            // 
+            // kindleToolStripMenuItem
+            // 
+            this.kindleToolStripMenuItem.Name = "kindleToolStripMenuItem";
+            this.kindleToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.kindleToolStripMenuItem.Text = "Kindle";
+            this.kindleToolStripMenuItem.Click += new System.EventHandler(this.kindleToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -179,7 +194,7 @@
             this.undoToolStripMenuItem.Enabled = false;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.undoToolStripMenuItem.Text = "&Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.undo_Click);
             // 
@@ -188,23 +203,24 @@
             this.redoToolStripMenuItem.Enabled = false;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redoToolStripMenuItem.Text = "&Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.redo_Click);
             // 
             // cleanupToolStripMenuItem
             // 
             this.cleanupToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.removeImagesToolStripMenuItem,
             this.runScriptToolStripMenuItem});
             this.cleanupToolStripMenuItem.Name = "cleanupToolStripMenuItem";
             this.cleanupToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.cleanupToolStripMenuItem.Text = "&Cleanup";
-            this.cleanupToolStripMenuItem.Visible = false;
             // 
             // runScriptToolStripMenuItem
             // 
+            this.runScriptToolStripMenuItem.Enabled = false;
             this.runScriptToolStripMenuItem.Name = "runScriptToolStripMenuItem";
-            this.runScriptToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.runScriptToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.runScriptToolStripMenuItem.Text = "&Run script";
             // 
             // helpToolStripMenuItem
@@ -475,18 +491,12 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
-            // wordPressToolStripMenuItem
+            // removeImagesToolStripMenuItem
             // 
-            this.wordPressToolStripMenuItem.Name = "wordPressToolStripMenuItem";
-            this.wordPressToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.wordPressToolStripMenuItem.Text = "WordPress";
-            this.wordPressToolStripMenuItem.Click += new System.EventHandler(this.wordPressToolStripMenuItem_Click);
-            // kindleToolStripMenuItem
-            // 
-            this.kindleToolStripMenuItem.Name = "kindleToolStripMenuItem";
-            this.kindleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kindleToolStripMenuItem.Text = "Kindle";
-            this.kindleToolStripMenuItem.Click += new System.EventHandler(this.kindleToolStripMenuItem_Click);
+            this.removeImagesToolStripMenuItem.Name = "removeImagesToolStripMenuItem";
+            this.removeImagesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.removeImagesToolStripMenuItem.Text = "Remove images";
+            this.removeImagesToolStripMenuItem.Click += new System.EventHandler(this.removeImagesToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -565,6 +575,7 @@
         private System.Windows.Forms.ToolStripMenuItem wordPressToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem htmlToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kindleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeImagesToolStripMenuItem;
     }
 }
 

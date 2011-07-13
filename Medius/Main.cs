@@ -465,5 +465,11 @@ namespace Medius
             }
             // TODO: display status message
         }
+
+        private void removeImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            actions.Do(new RemoveImagesAction(project.Book.GetAllPosts()));
+            updateUI();
+        }
     }
 }
