@@ -15,7 +15,7 @@ namespace Medius
         IUndoRedoController actions = new UndoRedoController();
 
         string activeFilename;
-        bool modified;
+        bool modified, updatingUI;
 
         public Main()
         {
@@ -25,8 +25,9 @@ namespace Medius
         private void Main_Load(object sender, EventArgs e)
         {
             disableUI();
-            
-            // temporary -- remove edit tab until it is implemented
+
+            // remove edit tab until it is needed.
+            // unfortunately the tabcontrol cannot hide and show tabs, so we must juggle it
             tabControl.TabPages.Remove(editTab);
         }
 
@@ -271,47 +272,78 @@ namespace Medius
 
         private void updateUI()
         {
+            updatingUI = true;
+
             updateOutline();
+            updateTabs(outline.SelectedNode);
             updateEditMenu();
+
+            updatingUI = false;
         }
 
         private void updateEditMenu()
         {
+            updatingUI = true;
+
             undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
             redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
+
+            updatingUI = false;
         }
 
         private void updateOutline()
         {
+            updatingUI = true;
+
             // TODO: optimize this to rebuild only changed elements
             clearOutline();
             populateOutline();
+
+            updatingUI = false;
         }
 
         #endregion Helper functions
 
         private void outline_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            switch (e.Node.Level)
+            updateTabs(e.Node);
+        }
+
+        private void updateTabs(TreeNode node)
+        {
+            updatingUI = true;
+
+            browseWindow.DocumentText = string.Empty;
+            postEditBox.Text = string.Empty;
+
+            if (node == null)
+                return;
+
+            switch (node.Level)
             {
                 case 0: // book
-                    Book b = e.Node.Tag as Book;  // could get this from project as well...
-                    browseWindow.DocumentText = string.Empty;
+                    Book b = node.Tag as Book;  // could get this from project as well...
+                    tabControl.TabPages.Remove(editTab);
                     propertyGrid.SelectedObject = b;
                     break;
                 case 1: // chapter
-                    Chapter c = e.Node.Tag as Chapter;
-                    browseWindow.DocumentText = string.Empty;
+                    Chapter c = node.Tag as Chapter;
+                    tabControl.TabPages.Remove(editTab);
                     propertyGrid.SelectedObject = c;
                     break;
                 case 2: // post
-                    Post p = e.Node.Tag as Post;
+                    Post p = node.Tag as Post;
                     browseWindow.DocumentText = "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
+                    if (!tabControl.TabPages.Contains(editTab))
+                        tabControl.TabPages.Add(editTab);
+                    postEditBox.Text = p.Content;
                     propertyGrid.SelectedObject = p;
                     break;
                 default:
                     throw new Exception();
             }
+
+            updatingUI = false;
         }
 
         private void addChapter_Click(object sender, EventArgs e)
@@ -431,10 +463,12 @@ namespace Medius
             // bookkeeping
             activeFilename = null;  // force "save as"
             modified = false;
-            
+
             updateUI();
             enableUI();
         }
+
+        #region Export menu
 
         private void htmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -466,6 +500,10 @@ namespace Medius
             // TODO: display status message
         }
 
+        #endregion Export menu
+
+        #region Cleanup menu
+
         private void removeNodesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             RemoveNodesDialog d = new RemoveNodesDialog();
@@ -489,6 +527,36 @@ namespace Medius
         private void validateHtmlToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new ValidateHtmlDialog() { Posts = project.Book.GetAllPosts() }.ShowDialog();
+        }
+
+        #endregion Cleanup menu
+
+        private void postEditingSaveTimer_Tick(object sender, EventArgs e)
+        {
+            postEditingSaveTimer.Stop();
+            if (outline.SelectedNode == null)
+                return;
+
+            Post p = outline.SelectedNode.Tag as Post;
+            if (p != null)
+            {
+                actions.Do(new EditPostAction(p, postEditBox.Text));
+                updateEditMenu();
+                editTab.Text = "Edit";
+            }
+        }
+
+        private void postEditBox_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingUI)
+                return;
+
+            // mark dirty
+            editTab.Text = "Edit*";
+
+            // restart timer
+            postEditingSaveTimer.Stop();
+            postEditingSaveTimer.Start();
         }
     }
 }

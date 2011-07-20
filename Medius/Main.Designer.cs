@@ -45,6 +45,7 @@
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.validateHtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findReplaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.runScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.validateHtmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.postEditBox = new System.Windows.Forms.TextBox();
+            this.postEditingSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -81,6 +83,7 @@
             this.container.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.viewTab.SuspendLayout();
+            this.editTab.SuspendLayout();
             this.propTab.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -220,6 +223,13 @@
             this.cleanupToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.cleanupToolStripMenuItem.Text = "&Cleanup";
             // 
+            // validateHtmlToolStripMenuItem
+            // 
+            this.validateHtmlToolStripMenuItem.Name = "validateHtmlToolStripMenuItem";
+            this.validateHtmlToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.validateHtmlToolStripMenuItem.Text = "Validate HTML...";
+            this.validateHtmlToolStripMenuItem.Click += new System.EventHandler(this.validateHtmlToolStripMenuItem_Click);
+            // 
             // removeNodesToolStripMenuItem
             // 
             this.removeNodesToolStripMenuItem.Name = "removeNodesToolStripMenuItem";
@@ -316,8 +326,8 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.viewTab);
-            this.tabControl.Controls.Add(this.editTab);
             this.tabControl.Controls.Add(this.propTab);
+            this.tabControl.Controls.Add(this.editTab);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
@@ -348,6 +358,7 @@
             // 
             // editTab
             // 
+            this.editTab.Controls.Add(this.postEditBox);
             this.editTab.Location = new System.Drawing.Point(4, 22);
             this.editTab.Name = "editTab";
             this.editTab.Padding = new System.Windows.Forms.Padding(3);
@@ -509,12 +520,24 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
-            // validateHtmlToolStripMenuItem
+            // postEditBox
             // 
-            this.validateHtmlToolStripMenuItem.Name = "validateHtmlToolStripMenuItem";
-            this.validateHtmlToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.validateHtmlToolStripMenuItem.Text = "Validate HTML...";
-            this.validateHtmlToolStripMenuItem.Click += new System.EventHandler(this.validateHtmlToolStripMenuItem_Click);
+            this.postEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postEditBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postEditBox.Location = new System.Drawing.Point(3, 3);
+            this.postEditBox.Multiline = true;
+            this.postEditBox.Name = "postEditBox";
+            this.postEditBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.postEditBox.Size = new System.Drawing.Size(380, 382);
+            this.postEditBox.TabIndex = 0;
+            this.postEditBox.WordWrap = false;
+            this.postEditBox.TextChanged += new System.EventHandler(this.postEditBox_TextChanged);
+            // 
+            // postEditingSaveTimer
+            // 
+            this.postEditingSaveTimer.Enabled = true;
+            this.postEditingSaveTimer.Interval = 250;
+            this.postEditingSaveTimer.Tick += new System.EventHandler(this.postEditingSaveTimer_Tick);
             // 
             // Main
             // 
@@ -538,6 +561,8 @@
             this.container.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.viewTab.ResumeLayout(false);
+            this.editTab.ResumeLayout(false);
+            this.editTab.PerformLayout();
             this.propTab.ResumeLayout(false);
             this.toolbar.ResumeLayout(false);
             this.toolbar.PerformLayout();
@@ -596,6 +621,8 @@
         private System.Windows.Forms.ToolStripMenuItem removeNodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findReplaceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem validateHtmlToolStripMenuItem;
+        private System.Windows.Forms.TextBox postEditBox;
+        private System.Windows.Forms.Timer postEditingSaveTimer;
     }
 }
 
