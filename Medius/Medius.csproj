@@ -81,6 +81,7 @@
     <Compile Include="RemoveNodesDialog.Designer.cs">
       <DependentUpon>RemoveNodesDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="TreeViewExtensions.cs" />
     <Compile Include="ValidateHtmlDialog.cs">
       <SubType>Form</SubType>
     </Compile>

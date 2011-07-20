@@ -295,11 +295,43 @@ namespace Medius
         {
             updatingUI = true;
 
-            // TODO: optimize this to rebuild only changed elements
+            // save scroll location and selected node
+            outline.BeginUpdate();
+            outline.SuspendLayout();
+            Point scrollLocation = outline.GetScrollPosition();
+            TreeNode selectedNode = outline.SelectedNode;
+
+            // TODO: optimize this to clear and rebuild only changed elements
             clearOutline();
             populateOutline();
 
+            // restore scroll location and selected node (if possible)
+            outline.SelectedNode = FindEquivalentNode(outline.Nodes, selectedNode);
+            outline.SetScrollPosition(scrollLocation);
+            outline.ResumeLayout();
+            outline.EndUpdate();
+
             updatingUI = false;
+        }
+
+        private static TreeNode FindEquivalentNode(TreeNodeCollection tree, TreeNode searchNode)
+        {
+            // naive tree-search because we know the data is still the same...
+            // and if it isn't the same, we don't care, because we're going to lose our place anyway.
+            foreach (TreeNode node in tree)
+            {
+                if (string.Equals(node.Text, searchNode.Text) && (node.Tag == searchNode.Tag))
+                {
+                    return node;
+                }
+                else if (node.Nodes.Count > 0)
+                {
+                    TreeNode x = FindEquivalentNode(node.Nodes, searchNode);
+                    if (x != null)
+                        return x;
+                }
+            }
+            return null;
         }
 
         #endregion Helper functions
