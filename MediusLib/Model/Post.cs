@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Xml;
 using System.Xml.Serialization;
-using System.ComponentModel;
 
 namespace Medius.Model
 {
@@ -10,6 +10,17 @@ namespace Medius.Model
     /// </summary>
     public class Post
     {
+        public Post()
+        {
+        }
+
+        public Post(string title, string author = "", string content = "")
+        {
+            Title = title;
+            Author = author;
+            Content = content;
+        }
+
         /// <summary>
         /// The post title.
         /// </summary>

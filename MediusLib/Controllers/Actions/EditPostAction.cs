@@ -12,7 +12,7 @@ namespace Medius.Controllers.Actions
         protected Post post;
         protected string before, after;
 
-        public EditPostAction(Post post, string newContent)
+        public EditPostAction(Post post, string newContent) : base()
         {
             this.post = post;
             this.after = newContent;

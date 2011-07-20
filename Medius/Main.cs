@@ -291,6 +291,9 @@ namespace Medius
             updatingUI = false;
         }
 
+        /// <summary>
+        /// Brings the outline control up to date with the model.
+        /// </summary>
         private void updateOutline()
         {
             updatingUI = true;
@@ -314,8 +317,17 @@ namespace Medius
             updatingUI = false;
         }
 
+        /// <summary>
+        /// Searches the given tree and returns the first node with the same data as the given node.
+        /// </summary>
+        /// <param name="tree">Tree to search.</param>
+        /// <param name="searchNode">Target node.</param>
+        /// <returns>Equivalent node, or <c>null</c> if no match is found.</returns>
         private static TreeNode FindEquivalentNode(TreeNodeCollection tree, TreeNode searchNode)
         {
+            if ((tree == null) || (searchNode == null))
+                return null;
+
             // naive tree-search because we know the data is still the same...
             // and if it isn't the same, we don't care, because we're going to lose our place anyway.
             foreach (TreeNode node in tree)
@@ -332,6 +344,15 @@ namespace Medius
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Returns a string containing the HTML representation of the given <see cref="Post"/>.
+        /// </summary>
+        /// <param name="p">The post.</param>
+        private static string postAsHtml(Post p)
+        {
+            return "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
         }
 
         #endregion Helper functions
@@ -365,7 +386,7 @@ namespace Medius
                     break;
                 case 2: // post
                     Post p = node.Tag as Post;
-                    browseWindow.DocumentText = "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
+                    browseWindow.DocumentText = postAsHtml(p);
                     if (!tabControl.TabPages.Contains(editTab))
                         tabControl.TabPages.Add(editTab);
                     postEditBox.Text = p.Content;
@@ -378,6 +399,8 @@ namespace Medius
             updatingUI = false;
         }
 
+        #region Outline context menu
+
         private void addChapter_Click(object sender, EventArgs e)
         {
             AddChapterDialog d = new AddChapterDialog();
@@ -389,6 +412,28 @@ namespace Medius
 
             updateUI();
         }
+
+        private void addPostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddPostDialog d = new AddPostDialog();
+            if (d.ShowDialog() != DialogResult.OK)
+                return;
+
+            // find containing chapter
+            Chapter chapter;
+            if ((outline.SelectedNode == null) || (outline.SelectedNode.Level == 0))
+                chapter = project.Book.Chapters[0];
+            else if (outline.SelectedNode.Level == 1)
+                chapter = outline.SelectedNode.Tag as Chapter;
+            else
+                chapter = outline.SelectedNode.Parent.Tag as Chapter;
+
+            actions.Do(new AddPostAction(chapter, new Post(d.Title)));
+
+            updateUI();
+        }
+
+        #endregion Outline context menu
 
         #region Drag and Drop methods
 
@@ -563,6 +608,8 @@ namespace Medius
 
         #endregion Cleanup menu
 
+        #region Edit tab
+
         private void postEditingSaveTimer_Tick(object sender, EventArgs e)
         {
             postEditingSaveTimer.Stop();
@@ -574,6 +621,7 @@ namespace Medius
             {
                 actions.Do(new EditPostAction(p, postEditBox.Text));
                 updateEditMenu();
+                browseWindow.DocumentText = postAsHtml(p);
                 editTab.Text = "Edit";
             }
         }
@@ -590,5 +638,7 @@ namespace Medius
             postEditingSaveTimer.Stop();
             postEditingSaveTimer.Start();
         }
+
+        #endregion Edit tab
     }
 }

@@ -105,6 +105,7 @@
             this.MinimizeBox = false;
             this.Name = "AddChapterDialog";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Add Chapter";
             this.Load += new System.EventHandler(this.AddChapterDialog_Load);
             this.ResumeLayout(false);

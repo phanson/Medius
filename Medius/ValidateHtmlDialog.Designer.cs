@@ -74,7 +74,11 @@
             this.Controls.Add(this.okButton);
             this.Controls.Add(this.postList);
             this.Controls.Add(this.validationLabel);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ValidateHtmlDialog";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Validate HTML";
             this.Load += new System.EventHandler(this.ValidateHtmlDialog_Load);
             this.ResumeLayout(false);

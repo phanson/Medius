@@ -61,6 +61,12 @@
     <Compile Include="AddChapterDialog.Designer.cs">
       <DependentUpon>AddChapterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPostDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPostDialog.Designer.cs">
+      <DependentUpon>AddPostDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="FindReplaceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddChapterDialog.resx">
       <DependentUpon>AddChapterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddPostDialog.resx">
+      <DependentUpon>AddPostDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FindReplaceDialog.resx">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>

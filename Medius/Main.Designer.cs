@@ -59,9 +59,10 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.viewTab = new System.Windows.Forms.TabPage();
             this.browseWindow = new System.Windows.Forms.WebBrowser();
-            this.editTab = new System.Windows.Forms.TabPage();
             this.propTab = new System.Windows.Forms.TabPage();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
+            this.editTab = new System.Windows.Forms.TabPage();
+            this.postEditBox = new System.Windows.Forms.TextBox();
             this.toolbar = new System.Windows.Forms.ToolStrip();
             this.openButton = new System.Windows.Forms.ToolStripButton();
             this.saveButton = new System.Windows.Forms.ToolStripButton();
@@ -73,8 +74,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.postEditBox = new System.Windows.Forms.TextBox();
             this.postEditingSaveTimer = new System.Windows.Forms.Timer(this.components);
+            this.addPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -83,8 +84,8 @@
             this.container.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.viewTab.SuspendLayout();
-            this.editTab.SuspendLayout();
             this.propTab.SuspendLayout();
+            this.editTab.SuspendLayout();
             this.toolbar.SuspendLayout();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
@@ -294,14 +295,15 @@
             // outlineContextMenu
             // 
             this.outlineContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addChapterToolStripMenuItem});
+            this.addChapterToolStripMenuItem,
+            this.addPostToolStripMenuItem});
             this.outlineContextMenu.Name = "outlineContextMenu";
-            this.outlineContextMenu.Size = new System.Drawing.Size(149, 26);
+            this.outlineContextMenu.Size = new System.Drawing.Size(153, 70);
             // 
             // addChapterToolStripMenuItem
             // 
             this.addChapterToolStripMenuItem.Name = "addChapterToolStripMenuItem";
-            this.addChapterToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.addChapterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addChapterToolStripMenuItem.Text = "Add chapter...";
             this.addChapterToolStripMenuItem.Click += new System.EventHandler(this.addChapter_Click);
             // 
@@ -356,17 +358,6 @@
             this.browseWindow.TabIndex = 0;
             this.browseWindow.WebBrowserShortcutsEnabled = false;
             // 
-            // editTab
-            // 
-            this.editTab.Controls.Add(this.postEditBox);
-            this.editTab.Location = new System.Drawing.Point(4, 22);
-            this.editTab.Name = "editTab";
-            this.editTab.Padding = new System.Windows.Forms.Padding(3);
-            this.editTab.Size = new System.Drawing.Size(386, 388);
-            this.editTab.TabIndex = 1;
-            this.editTab.Text = "Edit";
-            this.editTab.UseVisualStyleBackColor = true;
-            // 
             // propTab
             // 
             this.propTab.Controls.Add(this.propertyGrid);
@@ -387,6 +378,30 @@
             this.propertyGrid.Size = new System.Drawing.Size(380, 382);
             this.propertyGrid.TabIndex = 0;
             this.propertyGrid.ToolbarVisible = false;
+            // 
+            // editTab
+            // 
+            this.editTab.Controls.Add(this.postEditBox);
+            this.editTab.Location = new System.Drawing.Point(4, 22);
+            this.editTab.Name = "editTab";
+            this.editTab.Padding = new System.Windows.Forms.Padding(3);
+            this.editTab.Size = new System.Drawing.Size(386, 388);
+            this.editTab.TabIndex = 1;
+            this.editTab.Text = "Edit";
+            this.editTab.UseVisualStyleBackColor = true;
+            // 
+            // postEditBox
+            // 
+            this.postEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.postEditBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postEditBox.Location = new System.Drawing.Point(3, 3);
+            this.postEditBox.Multiline = true;
+            this.postEditBox.Name = "postEditBox";
+            this.postEditBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.postEditBox.Size = new System.Drawing.Size(380, 382);
+            this.postEditBox.TabIndex = 0;
+            this.postEditBox.WordWrap = false;
+            this.postEditBox.TextChanged += new System.EventHandler(this.postEditBox_TextChanged);
             // 
             // toolbar
             // 
@@ -520,24 +535,18 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolbar);
             // 
-            // postEditBox
-            // 
-            this.postEditBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.postEditBox.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.postEditBox.Location = new System.Drawing.Point(3, 3);
-            this.postEditBox.Multiline = true;
-            this.postEditBox.Name = "postEditBox";
-            this.postEditBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.postEditBox.Size = new System.Drawing.Size(380, 382);
-            this.postEditBox.TabIndex = 0;
-            this.postEditBox.WordWrap = false;
-            this.postEditBox.TextChanged += new System.EventHandler(this.postEditBox_TextChanged);
-            // 
             // postEditingSaveTimer
             // 
             this.postEditingSaveTimer.Enabled = true;
             this.postEditingSaveTimer.Interval = 250;
             this.postEditingSaveTimer.Tick += new System.EventHandler(this.postEditingSaveTimer_Tick);
+            // 
+            // addPostToolStripMenuItem
+            // 
+            this.addPostToolStripMenuItem.Name = "addPostToolStripMenuItem";
+            this.addPostToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addPostToolStripMenuItem.Text = "Add post...";
+            this.addPostToolStripMenuItem.Click += new System.EventHandler(this.addPostToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -561,9 +570,9 @@
             this.container.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.viewTab.ResumeLayout(false);
+            this.propTab.ResumeLayout(false);
             this.editTab.ResumeLayout(false);
             this.editTab.PerformLayout();
-            this.propTab.ResumeLayout(false);
             this.toolbar.ResumeLayout(false);
             this.toolbar.PerformLayout();
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
@@ -623,6 +632,7 @@
         private System.Windows.Forms.ToolStripMenuItem validateHtmlToolStripMenuItem;
         private System.Windows.Forms.TextBox postEditBox;
         private System.Windows.Forms.Timer postEditingSaveTimer;
+        private System.Windows.Forms.ToolStripMenuItem addPostToolStripMenuItem;
     }
 }
 
