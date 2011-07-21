@@ -55,6 +55,7 @@
             this.outline = new System.Windows.Forms.TreeView();
             this.outlineContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addChapterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.container = new System.Windows.Forms.SplitContainer();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.viewTab = new System.Windows.Forms.TabPage();
@@ -75,7 +76,7 @@
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.postEditingSaveTimer = new System.Windows.Forms.Timer(this.components);
-            this.addPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -296,9 +297,10 @@
             // 
             this.outlineContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addChapterToolStripMenuItem,
-            this.addPostToolStripMenuItem});
+            this.addPostToolStripMenuItem,
+            this.deleteToolStripMenuItem});
             this.outlineContextMenu.Name = "outlineContextMenu";
-            this.outlineContextMenu.Size = new System.Drawing.Size(153, 70);
+            this.outlineContextMenu.Size = new System.Drawing.Size(153, 92);
             // 
             // addChapterToolStripMenuItem
             // 
@@ -306,6 +308,13 @@
             this.addChapterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addChapterToolStripMenuItem.Text = "Add chapter...";
             this.addChapterToolStripMenuItem.Click += new System.EventHandler(this.addChapter_Click);
+            // 
+            // addPostToolStripMenuItem
+            // 
+            this.addPostToolStripMenuItem.Name = "addPostToolStripMenuItem";
+            this.addPostToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addPostToolStripMenuItem.Text = "Add post...";
+            this.addPostToolStripMenuItem.Click += new System.EventHandler(this.addPostToolStripMenuItem_Click);
             // 
             // container
             // 
@@ -541,12 +550,13 @@
             this.postEditingSaveTimer.Interval = 250;
             this.postEditingSaveTimer.Tick += new System.EventHandler(this.postEditingSaveTimer_Tick);
             // 
-            // addPostToolStripMenuItem
+            // deleteToolStripMenuItem
             // 
-            this.addPostToolStripMenuItem.Name = "addPostToolStripMenuItem";
-            this.addPostToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addPostToolStripMenuItem.Text = "Add post...";
-            this.addPostToolStripMenuItem.Click += new System.EventHandler(this.addPostToolStripMenuItem_Click);
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -633,6 +643,7 @@
         private System.Windows.Forms.TextBox postEditBox;
         private System.Windows.Forms.Timer postEditingSaveTimer;
         private System.Windows.Forms.ToolStripMenuItem addPostToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

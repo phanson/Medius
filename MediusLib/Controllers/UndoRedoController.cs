@@ -13,6 +13,7 @@ namespace Medius.Controllers
         {
             action.Do();
             done.Push(action);
+            undone.Clear();
         }
 
         public bool CanUndo

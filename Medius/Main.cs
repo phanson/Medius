@@ -369,6 +369,8 @@ namespace Medius
             browseWindow.DocumentText = string.Empty;
             postEditBox.Text = string.Empty;
 
+            deleteToolStripMenuItem.Enabled = false;
+
             if (node == null)
                 return;
 
@@ -391,6 +393,7 @@ namespace Medius
                         tabControl.TabPages.Add(editTab);
                     postEditBox.Text = p.Content;
                     propertyGrid.SelectedObject = p;
+                    deleteToolStripMenuItem.Enabled = true;
                     break;
                 default:
                     throw new Exception();
@@ -431,6 +434,18 @@ namespace Medius
             actions.Do(new AddPostAction(chapter, new Post(d.Title)));
 
             updateUI();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (outline.SelectedNode == null)
+                return;
+
+            if (outline.SelectedNode.Level == 2)
+            {
+                actions.Do(new DeletePostAction(outline.SelectedNode.Parent.Tag as Chapter, outline.SelectedNode.Tag as Post));
+                updateUI();
+            }
         }
 
         #endregion Outline context menu
