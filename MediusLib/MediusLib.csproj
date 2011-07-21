@@ -48,6 +48,7 @@
     <Compile Include="Controllers\Actions\AbstractOperateOnEachAction.cs" />
     <Compile Include="Controllers\Actions\AddChapterAction.cs" />
     <Compile Include="Controllers\Actions\AddPostAction.cs" />
+    <Compile Include="Controllers\Actions\CombinePostsAction.cs" />
     <Compile Include="Controllers\Actions\DeletePostAction.cs" />
     <Compile Include="Controllers\Actions\EditPostAction.cs" />
     <Compile Include="Controllers\Actions\FindReplaceAction.cs" />

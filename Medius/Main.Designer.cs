@@ -77,6 +77,7 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.postEditingSaveTimer = new System.Windows.Forms.Timer(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.combineWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -298,9 +299,10 @@
             this.outlineContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addChapterToolStripMenuItem,
             this.addPostToolStripMenuItem,
+            this.combineWithNextToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.outlineContextMenu.Name = "outlineContextMenu";
-            this.outlineContextMenu.Size = new System.Drawing.Size(153, 92);
+            this.outlineContextMenu.Size = new System.Drawing.Size(175, 114);
             // 
             // addChapterToolStripMenuItem
             // 
@@ -558,6 +560,13 @@
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // combineWithNextToolStripMenuItem
+            // 
+            this.combineWithNextToolStripMenuItem.Name = "combineWithNextToolStripMenuItem";
+            this.combineWithNextToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.combineWithNextToolStripMenuItem.Text = "Combine with next";
+            this.combineWithNextToolStripMenuItem.Click += new System.EventHandler(this.combineWithNextToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -644,6 +653,7 @@
         private System.Windows.Forms.Timer postEditingSaveTimer;
         private System.Windows.Forms.ToolStripMenuItem addPostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem combineWithNextToolStripMenuItem;
     }
 }
 

@@ -369,6 +369,7 @@ namespace Medius
             browseWindow.DocumentText = string.Empty;
             postEditBox.Text = string.Empty;
 
+            combineWithNextToolStripMenuItem.Enabled = false;
             deleteToolStripMenuItem.Enabled = false;
 
             if (node == null)
@@ -393,6 +394,7 @@ namespace Medius
                         tabControl.TabPages.Add(editTab);
                     postEditBox.Text = p.Content;
                     propertyGrid.SelectedObject = p;
+                    combineWithNextToolStripMenuItem.Enabled = true;
                     deleteToolStripMenuItem.Enabled = true;
                     break;
                 default:
@@ -438,14 +440,31 @@ namespace Medius
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (outline.SelectedNode == null)
-                return;
+            // restrict to posts
+            TreeNode node = outline.SelectedNode;
+            if ((node == null) || (node.Level != 2))
+                return;  // TODO display an error or something
 
-            if (outline.SelectedNode.Level == 2)
-            {
-                actions.Do(new DeletePostAction(outline.SelectedNode.Parent.Tag as Chapter, outline.SelectedNode.Tag as Post));
-                updateUI();
-            }
+            Chapter chapter = node.Parent.Tag as Chapter;
+            Post post = node.Tag as Post;
+
+            actions.Do(new DeletePostAction(chapter, post));
+            updateUI();
+        }
+
+        private void combineWithNextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // restrict to posts with a sibling following
+            TreeNode node = outline.SelectedNode;
+            if ((node == null) || (node.Level != 2) || (node.NextNode == null))
+                return;  // TODO display an error or something
+
+            Chapter chapter = node.Parent.Tag as Chapter;
+            Post a = node.Tag as Post;
+            Post b = node.NextNode.Tag as Post;
+
+            actions.Do(new CombinePostsAction(chapter, a, b));
+            updateUI();
         }
 
         #endregion Outline context menu
