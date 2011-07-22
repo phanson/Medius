@@ -357,6 +357,18 @@ namespace Medius
 
         #endregion Helper functions
 
+        private void addfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.CheckFileExists = true;
+            d.Multiselect = false;
+            d.Filter = "All files (*.*)|*.*";
+            if (d.ShowDialog() != DialogResult.OK)
+                return;
+
+            new AddFileAction(project, d.FileName).Do();
+        }
+
         private void outline_AfterSelect(object sender, TreeViewEventArgs e)
         {
             updateTabs(e.Node);

@@ -14,7 +14,7 @@ namespace Medius.Controllers
         IBookPersistenceController bookLoader = new XmlPersistenceController();
         FilePersistenceController fileController = new FilePersistenceController();
 
-        protected readonly string[] textFile = { "txt", "xml", "css", "htm", "html", "tex", "bib" };
+        public static string[] TextFileExtensions = { "txt", "xml", "css", "htm", "html", "tex", "bib" };
 
         public Project Load(string filename)
         {
@@ -32,7 +32,7 @@ namespace Medius.Controllers
                             // TODO: validate file
                             project.Book = bookLoader.Load(zipStream);
                         }
-                        else if (textFile.Contains(Path.GetExtension(entry.Name)))
+                        else if (ProjectPersistenceController.TextFileExtensions.Contains(Path.GetExtension(entry.Name)))
                         {
                             // text file
                             project.Files.Add(readTextSupportFile(zipStream, entry));
