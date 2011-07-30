@@ -73,6 +73,12 @@
     <Compile Include="CleanupDialogs\FindReplaceDialog.Designer.cs">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\FileManagementDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\FileManagementDialog.Designer.cs">
+      <DependentUpon>FileManagementDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SplitPostDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CleanupDialogs\FindReplaceDialog.resx">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\FileManagementDialog.resx">
+      <DependentUpon>FileManagementDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SplitPostDialog.resx">
       <DependentUpon>SplitPostDialog.cs</DependentUpon>

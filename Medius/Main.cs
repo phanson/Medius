@@ -14,6 +14,8 @@ namespace Medius
 
         IUndoRedoController actions = new UndoRedoController();
 
+        FileManagementDialog fileManager;
+
         string activeFilename;
         bool modified, updatingUI;
 
@@ -32,6 +34,7 @@ namespace Medius
 
         private void Main_Load(object sender, EventArgs e)
         {
+            updateUI();
             disableUI();
 
             // remove edit tab until it is needed.
@@ -206,6 +209,7 @@ namespace Medius
             // bookkeeping
             activeFilename = d.FileName;
             modified = false;
+            fileManager = new FileManagementDialog(project);
 
             return true;
         }
@@ -295,7 +299,9 @@ namespace Medius
         {
             updatingUI = true;
 
-            saveToolStripMenuItem.Enabled = saveButton.Enabled = modified;
+            saveToolStripMenuItem.Enabled = saveButton.Enabled = (project != null) && modified;
+            saveAsToolStripMenuItem.Enabled = (project != null);
+            fileToolStripMenuItem.Enabled = (project != null);
 
             undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
             redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
@@ -360,16 +366,10 @@ namespace Medius
 
         #endregion Helper functions
 
-        private void addfileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog d = new OpenFileDialog();
-            d.CheckFileExists = true;
-            d.Multiselect = false;
-            d.Filter = "All files (*.*)|*.*";
-            if (d.ShowDialog() != DialogResult.OK)
-                return;
-
-            new AddFileAction(project, d.FileName).Do();
+            fileManager.ShowDialog();
+            updateUI();
         }
 
         private void outline_AfterSelect(object sender, TreeViewEventArgs e)

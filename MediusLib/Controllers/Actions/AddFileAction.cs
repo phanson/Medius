@@ -46,10 +46,10 @@ namespace Medius.Controllers.Actions
             openStream();
             try
             {
-                if (ProjectPersistenceController.TextFileExtensions.Contains(Path.GetExtension(filename)))
+                if (Util.Helpers.TextFileExtensions.Contains(Path.GetExtension(filename).TrimStart('.')))
                 {
                     // text file
-                    file = new TextFile() { Filename = filename, Data = new StreamReader(stream).ReadToEnd() };
+                    file = new TextFile() { Filename = Path.GetFileName(filename), Data = new StreamReader(stream).ReadToEnd() };
                 }
                 else
                 {
@@ -57,7 +57,7 @@ namespace Medius.Controllers.Actions
                     int length = (int)stream.Length;
                     byte[] data = new byte[length];
                     stream.Read(data, 0, length);
-                    file = new BinaryFile() { Filename = filename, Data = data };
+                    file = new BinaryFile() { Filename = Path.GetFileName(filename), Data = data };
                 }
 
                 // add to project

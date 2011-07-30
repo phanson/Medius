@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Medius.Model;
+﻿using Medius.Model;
 
 namespace Medius.Util
 {
@@ -11,6 +7,8 @@ namespace Medius.Util
     /// </summary>
     public static class Helpers
     {
+        public static string[] TextFileExtensions = { "txt", "xml", "css", "htm", "html", "tex", "bib" };
+
         /// <summary>
         /// Generalized sort comparison function for ordering posts.
         /// </summary>

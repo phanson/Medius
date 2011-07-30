@@ -38,7 +38,7 @@
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.htmlToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kindleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +58,7 @@
             this.addChapterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.combineWithNextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.container = new System.Windows.Forms.SplitContainer();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -79,7 +80,6 @@
             this.helpButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.postEditingSaveTimer = new System.Windows.Forms.Timer(this.components);
-            this.splitPostToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.outlineContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.container)).BeginInit();
@@ -115,7 +115,7 @@
             this.openToolStripMenuItem,
             this.importToolStripMenuItem,
             this.exportToolStripMenuItem,
-            this.addfileToolStripMenuItem,
+            this.fileToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.exitToolStripMenuItem});
@@ -171,10 +171,10 @@
             // 
             // addfileToolStripMenuItem
             // 
-            this.addfileToolStripMenuItem.Name = "addfileToolStripMenuItem";
-            this.addfileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.addfileToolStripMenuItem.Text = "Add &file...";
-            this.addfileToolStripMenuItem.Click += new System.EventHandler(this.addfileToolStripMenuItem_Click);
+            this.fileToolStripMenuItem.Name = "addfileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fileToolStripMenuItem.Text = "&Files...";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -335,6 +335,13 @@
             this.combineWithNextToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.combineWithNextToolStripMenuItem.Text = "Combine with next";
             this.combineWithNextToolStripMenuItem.Click += new System.EventHandler(this.combineWithNextToolStripMenuItem_Click);
+            // 
+            // splitPostToolStripMenuItem
+            // 
+            this.splitPostToolStripMenuItem.Name = "splitPostToolStripMenuItem";
+            this.splitPostToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.splitPostToolStripMenuItem.Text = "Split post...";
+            this.splitPostToolStripMenuItem.Click += new System.EventHandler(this.splitPostToolStripMenuItem_Click);
             // 
             // deleteToolStripMenuItem
             // 
@@ -578,13 +585,6 @@
             this.postEditingSaveTimer.Interval = 250;
             this.postEditingSaveTimer.Tick += new System.EventHandler(this.postEditingSaveTimer_Tick);
             // 
-            // splitPostToolStripMenuItem
-            // 
-            this.splitPostToolStripMenuItem.Name = "splitPostToolStripMenuItem";
-            this.splitPostToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.splitPostToolStripMenuItem.Text = "Split post...";
-            this.splitPostToolStripMenuItem.Click += new System.EventHandler(this.splitPostToolStripMenuItem_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,7 +672,7 @@
         private System.Windows.Forms.ToolStripMenuItem addPostToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem combineWithNextToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitPostToolStripMenuItem;
     }
 }

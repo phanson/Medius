@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.IO;
 using System.Linq;
-using System.Text;
-using Medius.Model;
 using ICSharpCode.SharpZipLib.Zip;
-using System.IO;
-using ICSharpCode.SharpZipLib.Core;
+using Medius.Model;
 
 namespace Medius.Controllers
 {
@@ -13,8 +9,6 @@ namespace Medius.Controllers
     {
         IBookPersistenceController bookLoader = new XmlPersistenceController();
         FilePersistenceController fileController = new FilePersistenceController();
-
-        public static string[] TextFileExtensions = { "txt", "xml", "css", "htm", "html", "tex", "bib" };
 
         public Project Load(string filename)
         {
@@ -32,7 +26,7 @@ namespace Medius.Controllers
                             // TODO: validate file
                             project.Book = bookLoader.Load(zipStream);
                         }
-                        else if (ProjectPersistenceController.TextFileExtensions.Contains(Path.GetExtension(entry.Name)))
+                        else if (Util.Helpers.TextFileExtensions.Contains(Path.GetExtension(entry.Name)))
                         {
                             // text file
                             project.Files.Add(readTextSupportFile(zipStream, entry));

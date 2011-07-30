@@ -56,6 +56,7 @@
     <Compile Include="Controllers\Actions\IReversibleAction.cs" />
     <Compile Include="Controllers\Actions\MoveChapterAction.cs" />
     <Compile Include="Controllers\Actions\MovePostAction.cs" />
+    <Compile Include="Controllers\Actions\RemoveFilesAction.cs" />
     <Compile Include="Controllers\Actions\RemoveNodesAction.cs" />
     <Compile Include="Controllers\Actions\SplitPostAction.cs" />
     <Compile Include="Controllers\Actions\ValidatePostsAction.cs" />
