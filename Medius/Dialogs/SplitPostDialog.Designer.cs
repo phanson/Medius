@@ -88,7 +88,7 @@
             this.splitTitleText.Location = new System.Drawing.Point(0, 60);
             this.splitTitleText.Name = "splitTitleText";
             this.splitTitleText.Size = new System.Drawing.Size(234, 20);
-            this.splitTitleText.TabIndex = 5;
+            this.splitTitleText.TabIndex = 1;
             // 
             // splitTitleLabel
             // 
@@ -104,7 +104,7 @@
             this.existingTitleText.Location = new System.Drawing.Point(0, 21);
             this.existingTitleText.Name = "existingTitleText";
             this.existingTitleText.Size = new System.Drawing.Size(234, 20);
-            this.existingTitleText.TabIndex = 3;
+            this.existingTitleText.TabIndex = 0;
             // 
             // existingTitleLabel
             // 
@@ -127,7 +127,7 @@
             this.splitPointText.Name = "splitPointText";
             this.splitPointText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.splitPointText.Size = new System.Drawing.Size(234, 268);
-            this.splitPointText.TabIndex = 1;
+            this.splitPointText.TabIndex = 2;
             this.splitPointText.Click += new System.EventHandler(this.updatePreview);
             this.splitPointText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.splitPointText_KeyDown);
             // 
@@ -165,7 +165,8 @@
             this.existingContentBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.existingContentBrowser.Name = "existingContentBrowser";
             this.existingContentBrowser.Size = new System.Drawing.Size(227, 346);
-            this.existingContentBrowser.TabIndex = 1;
+            this.existingContentBrowser.TabIndex = 3;
+            this.existingContentBrowser.TabStop = false;
             // 
             // panel3
             // 
@@ -192,7 +193,8 @@
             this.splitContentBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.splitContentBrowser.Name = "splitContentBrowser";
             this.splitContentBrowser.Size = new System.Drawing.Size(228, 346);
-            this.splitContentBrowser.TabIndex = 2;
+            this.splitContentBrowser.TabIndex = 4;
+            this.splitContentBrowser.TabStop = false;
             // 
             // okButton
             // 
@@ -201,7 +203,7 @@
             this.okButton.Location = new System.Drawing.Point(582, 391);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(70, 23);
-            this.okButton.TabIndex = 1;
+            this.okButton.TabIndex = 5;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             // 
@@ -212,7 +214,7 @@
             this.cancelButton.Location = new System.Drawing.Point(658, 391);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(61, 23);
-            this.cancelButton.TabIndex = 2;
+            this.cancelButton.TabIndex = 6;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 

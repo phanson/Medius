@@ -1,6 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Medius.Model;
-using System;
 
 namespace Medius
 {
@@ -62,6 +62,7 @@ namespace Medius
         {
             splitPointText.Text = post.Content;
             int halfLength = splitPointText.Text.Length / 2;
+            splitPointText.SelectionStart = halfLength;
             splitPointText.Select(halfLength, halfLength + 1);
 
             existingTitleText.Text = post.Title + " (Part 1)";
