@@ -7,7 +7,7 @@ using Medius.Model;
 namespace Medius.Util
 {
     /// <summary>
-    /// A collection of sort functions, for now.
+    /// A collection of sort functions and miscellaneous static helpers.
     /// </summary>
     public static class Helpers
     {
@@ -45,6 +45,20 @@ namespace Medius.Util
             if (c != 0) return c;
 
             return a.Title.CompareTo(b.Title);
+        }
+
+        /// <summary>
+        /// Returns a string containing the HTML representation of the given <see cref="Post"/>.
+        /// </summary>
+        /// <param name="p">The post.</param>
+        public static string ToHtml(Post p)
+        {
+            return ToHtml(p.Content, p.Title);
+        }
+
+        public static string ToHtml(string content, string title = "")
+        {
+            return "<!DOCTYPE html><html><head><title>" + title + "</title></head><body>" + content + "</body></html>";
         }
     }
 }

@@ -346,15 +346,6 @@ namespace Medius
             return null;
         }
 
-        /// <summary>
-        /// Returns a string containing the HTML representation of the given <see cref="Post"/>.
-        /// </summary>
-        /// <param name="p">The post.</param>
-        private static string postAsHtml(Post p)
-        {
-            return "<!DOCTYPE html><html><head><title>" + p.Title + "</title></head><body>" + p.Content + "</body></html>";
-        }
-
         #endregion Helper functions
 
         private void addfileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -401,7 +392,7 @@ namespace Medius
                     break;
                 case 2: // post
                     Post p = node.Tag as Post;
-                    browseWindow.DocumentText = postAsHtml(p);
+                    browseWindow.DocumentText = Util.Helpers.ToHtml(p);
                     if (!tabControl.TabPages.Contains(editTab))
                         tabControl.TabPages.Add(editTab);
                     postEditBox.Text = p.Content;
@@ -476,6 +467,23 @@ namespace Medius
             Post b = node.NextNode.Tag as Post;
 
             actions.Do(new CombinePostsAction(chapter, a, b));
+            updateUI();
+        }
+
+        private void splitPostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode node = outline.SelectedNode;
+            if ((node == null) || (node.Level != 2))
+                return;  // TODO display an error or something
+
+            Chapter chapter = node.Parent.Tag as Chapter;
+            Post post = node.Tag as Post;
+
+            SplitPostDialog d = new SplitPostDialog(post);
+            if (d.ShowDialog() != DialogResult.OK)
+                return;
+
+            actions.Do(new SplitPostAction(chapter, post, d.ExistingPostTitle, d.ExistingPostContent, d.SplitPostTitle, d.SplitPostContent));
             updateUI();
         }
 
@@ -667,7 +675,7 @@ namespace Medius
             {
                 actions.Do(new EditPostAction(p, postEditBox.Text));
                 updateEditMenu();
-                browseWindow.DocumentText = postAsHtml(p);
+                browseWindow.DocumentText = Util.Helpers.ToHtml(p);
                 editTab.Text = "Edit";
             }
         }

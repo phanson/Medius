@@ -55,23 +55,29 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddChapterDialog.cs">
+    <Compile Include="Dialogs\AddChapterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddChapterDialog.Designer.cs">
+    <Compile Include="Dialogs\AddChapterDialog.Designer.cs">
       <DependentUpon>AddChapterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPostDialog.cs">
+    <Compile Include="Dialogs\AddPostDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPostDialog.Designer.cs">
+    <Compile Include="Dialogs\AddPostDialog.Designer.cs">
       <DependentUpon>AddPostDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="FindReplaceDialog.cs">
+    <Compile Include="CleanupDialogs\FindReplaceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FindReplaceDialog.Designer.cs">
+    <Compile Include="CleanupDialogs\FindReplaceDialog.Designer.cs">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\SplitPostDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\SplitPostDialog.Designer.cs">
+      <DependentUpon>SplitPostDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -81,30 +87,33 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveNodesDialog.cs">
+    <Compile Include="CleanupDialogs\RemoveNodesDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RemoveNodesDialog.Designer.cs">
+    <Compile Include="CleanupDialogs\RemoveNodesDialog.Designer.cs">
       <DependentUpon>RemoveNodesDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="TreeViewExtensions.cs" />
-    <Compile Include="ValidateHtmlDialog.cs">
+    <Compile Include="CleanupDialogs\ValidateHtmlDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ValidateHtmlDialog.Designer.cs">
+    <Compile Include="CleanupDialogs\ValidateHtmlDialog.Designer.cs">
       <DependentUpon>ValidateHtmlDialog.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddChapterDialog.resx">
+    <EmbeddedResource Include="Dialogs\AddChapterDialog.resx">
       <DependentUpon>AddChapterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPostDialog.resx">
+    <EmbeddedResource Include="Dialogs\AddPostDialog.resx">
       <DependentUpon>AddPostDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FindReplaceDialog.resx">
+    <EmbeddedResource Include="CleanupDialogs\FindReplaceDialog.resx">
       <DependentUpon>FindReplaceDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\SplitPostDialog.resx">
+      <DependentUpon>SplitPostDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -119,10 +128,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RemoveNodesDialog.resx">
+    <EmbeddedResource Include="CleanupDialogs\RemoveNodesDialog.resx">
       <DependentUpon>RemoveNodesDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ValidateHtmlDialog.resx">
+    <EmbeddedResource Include="CleanupDialogs\ValidateHtmlDialog.resx">
       <DependentUpon>ValidateHtmlDialog.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
