@@ -60,6 +60,7 @@ namespace Medius
             clearUI();
             populateUI();
             enableUI();
+            updateMenus();
         }
 
         private void exit_Click(object sender, EventArgs e)
@@ -230,6 +231,7 @@ namespace Medius
             // save to file
             projectLoader.Save(project, activeFilename);
             modified = false;
+            updateMenus();
         }
 
         /// <summary>
@@ -276,14 +278,16 @@ namespace Medius
 
             updateOutline();
             updateTabs(outline.SelectedNode);
-            updateEditMenu();
+            updateMenus();
 
             updatingUI = false;
         }
 
-        private void updateEditMenu()
+        private void updateMenus()
         {
             updatingUI = true;
+
+            saveToolStripMenuItem.Enabled = saveButton.Enabled = modified;
 
             undoToolStripMenuItem.Enabled = undoButton.Enabled = actions.CanUndo;
             redoToolStripMenuItem.Enabled = redoButton.Enabled = actions.CanRedo;
@@ -674,7 +678,7 @@ namespace Medius
             if (p != null)
             {
                 actions.Do(new EditPostAction(p, postEditBox.Text));
-                updateEditMenu();
+                updateMenus();
                 browseWindow.DocumentText = Util.Helpers.ToHtml(p);
                 editTab.Text = "Edit";
             }
