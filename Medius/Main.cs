@@ -20,6 +20,14 @@ namespace Medius
         public Main()
         {
             InitializeComponent();
+
+            actions.ActionPerformed += new EventHandler(undoRedoActivityFired);
+            actions.ActionReverted += new EventHandler(undoRedoActivityFired);
+        }
+
+        void undoRedoActivityFired(object sender, EventArgs e)
+        {
+            modified = true;
         }
 
         private void Main_Load(object sender, EventArgs e)

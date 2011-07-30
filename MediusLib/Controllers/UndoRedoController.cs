@@ -9,11 +9,28 @@ namespace Medius.Controllers
         protected Stack<IReversibleAction> done = new Stack<IReversibleAction>();
         protected Stack<IReversibleAction> undone = new Stack<IReversibleAction>();
 
+        public event EventHandler ActionPerformed;
+        public event EventHandler ActionReverted;
+
+        private void OnActionPerformed(IReversibleAction action)
+        {
+            if (ActionPerformed != null)
+                ActionPerformed(action, new EventArgs());
+        }
+
+        private void OnActionReverted(IReversibleAction action)
+        {
+            if (ActionReverted != null)
+                ActionReverted(action, new EventArgs());
+        }
+
         public void Do(IReversibleAction action)
         {
             action.Do();
             done.Push(action);
             undone.Clear();
+
+            OnActionPerformed(action);
         }
 
         public bool CanUndo
@@ -30,6 +47,8 @@ namespace Medius.Controllers
             IReversibleAction action = done.Pop();
             action.Undo();
             undone.Push(action);
+
+            OnActionReverted(action);
 
             return action;
         }
@@ -48,6 +67,8 @@ namespace Medius.Controllers
             IReversibleAction action = undone.Pop();
             action.Do();
             done.Push(action);
+
+            OnActionPerformed(action);
 
             return action;
         }

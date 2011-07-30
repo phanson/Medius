@@ -8,6 +8,16 @@ namespace Medius.Controllers
     public interface IUndoRedoController
     {
         /// <summary>
+        /// Fired when the <see cref="Do"/> method is called.
+        /// </summary>
+        event System.EventHandler ActionPerformed;
+
+        /// <summary>
+        /// Fired when the <see cref="Undo"/> method is called.
+        /// </summary>
+        event System.EventHandler ActionReverted;
+
+        /// <summary>
         /// Execute the given action.
         /// </summary>
         /// <param name="action">The reversible action.</param>
