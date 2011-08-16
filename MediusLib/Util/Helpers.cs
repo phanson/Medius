@@ -1,4 +1,5 @@
 ﻿using Medius.Model;
+using System;
 
 namespace Medius.Util
 {
@@ -51,12 +52,18 @@ namespace Medius.Util
         /// <param name="p">The post.</param>
         public static string ToHtml(Post p)
         {
-            return ToHtml(p.Content, p.Title);
+            return ToHtml(p.Content, p.Title, p.Author);
         }
 
-        public static string ToHtml(string content, string title = "")
+        public static string ToHtml(string content, string title = "", string author = "")
         {
-            return "<!DOCTYPE html><html><head><title>" + title + "</title></head><body>" + content + "</body></html>";
+            string titleText = null;
+            if (!string.IsNullOrWhiteSpace(title))
+                titleText = string.Format("<h1>{0}</h1>", title);
+            string authorText = null;
+            if (!string.IsNullOrWhiteSpace(author))
+                authorText = string.Format("<p class=\"author\">{0}</p>", author);
+            return string.Format("<!DOCTYPE html><html><head><title>{0}</title></head><body>{1}{2}{3}</body></html>", title, titleText, authorText, content);
         }
     }
 }
