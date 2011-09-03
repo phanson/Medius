@@ -70,5 +70,20 @@ namespace Medius.Model
             }
             return allPosts;
         }
+
+        /// <summary>
+        /// Convenience function for iterating over all authors.
+        /// </summary>
+        /// <returns>Flattened list of all authors contributing to this book.</returns>
+        public List<string> GetAllAuthors()
+        {
+            Dictionary<string, object> d = new Dictionary<string, object>();
+            foreach (Post p in GetAllPosts())
+            {
+                if (!d.ContainsKey(p.Author) && !string.IsNullOrWhiteSpace(p.Author))
+                    d.Add(p.Author, null);
+            }
+            return new List<string>(d.Keys);
+        }
     }
 }

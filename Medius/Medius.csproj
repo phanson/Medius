@@ -79,6 +79,12 @@
     <Compile Include="Dialogs\FileManagementDialog.Designer.cs">
       <DependentUpon>FileManagementDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\RenameAuthorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RenameAuthorDialog.Designer.cs">
+      <DependentUpon>RenameAuthorDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\SplitPostDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\FileManagementDialog.resx">
       <DependentUpon>FileManagementDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\RenameAuthorDialog.resx">
+      <DependentUpon>RenameAuthorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\SplitPostDialog.resx">
       <DependentUpon>SplitPostDialog.cs</DependentUpon>

@@ -672,6 +672,16 @@ namespace Medius
             new ValidateHtmlDialog() { Posts = project.Book.GetAllPosts() }.ShowDialog();
         }
 
+        private void renameAuthorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RenameAuthorDialog d = new RenameAuthorDialog(project.Book.GetAllAuthors());
+            if (d.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            actions.Do(new RenameAuthorAction(project.Book.GetAllPosts(), d.OldName, d.NewName));
+            updateUI();
+        }
+
         #endregion Cleanup menu
 
         #region Edit tab
