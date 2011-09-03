@@ -62,7 +62,7 @@ namespace Medius.Util
                 titleText = string.Format("<h1>{0}</h1>", title);
             string authorText = null;
             if (!string.IsNullOrWhiteSpace(author))
-                authorText = string.Format("<p class=\"author\">{0}</p>", author);
+                authorText = string.Format("<p class=\"author\">by {0}</p>", author);
             return string.Format("<!DOCTYPE html><html><head><title>{0}</title></head><body>{1}{2}{3}</body></html>", title, titleText, authorText, content);
         }
     }
