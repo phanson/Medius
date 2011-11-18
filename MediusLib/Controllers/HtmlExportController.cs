@@ -48,6 +48,13 @@ namespace Medius.Controllers
                     {
                         writer.WriteElementString("h3", p.Title);
 
+                        if (!string.IsNullOrWhiteSpace(p.Author))
+                        {
+                            writer.WriteStartElement("p");
+                            writer.WriteAttributeString("class", "author");
+                            writer.WriteString(string.Format("by {0}", p.Author));
+                            writer.WriteEndElement();
+                        }
                         writer.WriteStartElement("div");
                         writer.WriteAttributeString("class", "article");
                         writer.WriteRaw(p.Content);
